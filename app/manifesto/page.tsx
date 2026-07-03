@@ -6,19 +6,19 @@ import { manifestoPillars, manifestoSource } from "@/data/manifesto";
 import { CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Manifesto",
+  title: "My Manifesto",
   description:
-    "The Plan — the Bottom-Up Economic Transformation Agenda, pillar by pillar.",
+    "My manifesto — the Bottom-Up Economic Transformation Agenda, pillar by pillar.",
 };
 
 export default function ManifestoPage() {
   return (
     <>
       <PageHero
-        kicker="The Manifesto"
+        kicker="My Manifesto"
         title="The Bottom-Up"
         accent="Economic Transformation Agenda."
-        description="Five pillars, one philosophy: channel scarce resources to the base of the economic pyramid first. This is 'The Plan.'"
+        description="Five pillars, one philosophy: channel scarce resources to the base of the economic pyramid first. This is my plan."
       />
 
       <section className="border-t border-black/10 bg-white py-24 lg:py-32">

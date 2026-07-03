@@ -8,16 +8,16 @@ import { YoutubeEmbed } from "@/components/media/youtube-embed";
 import { videos } from "@/data/videos";
 
 export const metadata: Metadata = {
-  title: "Legacy",
+  title: "My Legacy",
   description:
-    "Kenya's standing on the world stage — the Ego & Legacy Vault of state visits, summits, and global diplomacy.",
+    "Kenya's standing on the world stage — my state visits, summits, and global diplomacy.",
 };
 
 export default function LegacyPage() {
   return (
     <>
       <PageHero
-        kicker="The Ego & Legacy Vault"
+        kicker="My Legacy"
         title="A voice at every"
         accent="global table."
         description="From the UN General Assembly to the G20 roundtable — Kenya's stature on the world stage, chronicled in image and word."

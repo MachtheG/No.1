@@ -6,19 +6,19 @@ import { Container } from "@/components/ui/container";
 import { promises } from "@/data/promises";
 
 export const metadata: Metadata = {
-  title: "Promises",
+  title: "My Promises",
   description:
-    "Commitments for the next chapter — what a second term delivers, and by when.",
+    "My commitments for the next chapter — what I will deliver, and by when.",
 };
 
 export default function PromisesPage() {
   return (
     <>
       <PageHero
-        kicker="The Promise"
-        title="What comes"
-        accent="next."
-        description="Delivery earns the right to promise more. These are the specific, measurable commitments for the chapter ahead."
+        kicker="My Promises"
+        title="What I will"
+        accent="deliver next."
+        description="Delivery earns the right to promise more. These are my specific, measurable commitments for the chapter ahead."
       />
 
       <section className="border-t border-black/10 bg-white py-24 lg:py-32">

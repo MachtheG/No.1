@@ -43,7 +43,7 @@ export function SiteHeader() {
             </span>
             <span className="flex flex-col leading-tight">
               <span className="font-display text-base font-semibold text-black">
-                William Ruto
+                H.E. Hon. Dr. William Ruto
               </span>
               <span className="text-[11px] uppercase tracking-widest text-black/50">
                 President of Kenya

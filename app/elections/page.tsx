@@ -62,7 +62,7 @@ export default function ElectionsPage() {
             </div>
             <div className="rounded-2xl border border-black/10 bg-black/[0.02] p-7">
               <p className="text-xs uppercase tracking-widest text-black/50">
-                Raila Odinga — Azimio
+                The Late Raila Odinga (Baba) — Azimio
               </p>
               <p className="mt-3 font-display text-4xl font-semibold text-black">
                 {nationalResult2022.odinga.pct}%

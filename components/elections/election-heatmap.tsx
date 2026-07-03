@@ -48,7 +48,8 @@ export function ElectionHeatmap() {
             Presidential result share by county — 2022
           </p>
           <p className="mt-1 text-xs text-black/40">
-            Share of the Ruto vs. Odinga two-way vote won by William Ruto.
+            Share of the two-way vote (Ruto vs. the Late Raila Odinga) won by
+            William Ruto.
             Source: IEBC county returns.
           </p>
         </div>
@@ -144,7 +145,7 @@ export function ElectionHeatmap() {
                       Ruto: {c.ruto.toLocaleString()} ({share.toFixed(1)}%)
                     </p>
                     <p className="text-[11px] text-white/50">
-                      Odinga: {c.odinga.toLocaleString()}
+                      The Late Raila (Baba): {c.odinga.toLocaleString()}
                     </p>
                   </div>
                 )}
@@ -160,7 +161,9 @@ export function ElectionHeatmap() {
                 <th className="px-4 py-3 font-medium">County</th>
                 <th className="px-4 py-3 font-medium">Region</th>
                 <th className="px-4 py-3 text-right font-medium">Ruto</th>
-                <th className="px-4 py-3 text-right font-medium">Odinga</th>
+                <th className="px-4 py-3 text-right font-medium">
+                  Raila (Baba)
+                </th>
                 <th className="px-4 py-3 text-right font-medium">Ruto Share</th>
               </tr>
             </thead>

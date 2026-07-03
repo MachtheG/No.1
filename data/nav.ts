@@ -11,32 +11,32 @@ export interface NavGroup {
 
 export const navGroups: NavGroup[] = [
   {
-    label: "The Record",
+    label: "My Record",
     links: [
       {
-        label: "Achievements",
+        label: "My Record",
         href: "/achievements",
         description: "The Transformation Ledger, audited by pillar",
       },
       {
-        label: "Manifesto",
+        label: "My Manifesto",
         href: "/manifesto",
         description: "The formal policy platform, pillar by pillar",
       },
       {
-        label: "Promises",
+        label: "My Promises",
         href: "/promises",
         description: "Commitments for the next chapter",
       },
       {
-        label: "Legacy",
+        label: "My Legacy",
         href: "/legacy",
         description: "Kenya's standing on the world stage",
       },
     ],
   },
   {
-    label: "About Him",
+    label: "About Me",
     links: [
       {
         label: "Journey to Presidency",

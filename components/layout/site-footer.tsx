@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
@@ -18,11 +19,16 @@ export function SiteFooter() {
         <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-party-yellow/50 bg-party-yellow/10 font-display text-sm font-semibold text-party-yellow">
-                WR
+              <span className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-white p-1">
+                <Image
+                  src="/images/coat-of-arms.svg"
+                  alt="Coat of Arms of the Republic of Kenya"
+                  fill
+                  className="object-contain p-1.5"
+                />
               </span>
-              <span className="font-display text-base font-semibold uppercase tracking-widest text-white">
-                William Ruto
+              <span className="font-display text-base font-semibold text-white">
+                H.E. Hon. Dr. William Ruto
               </span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/50">
