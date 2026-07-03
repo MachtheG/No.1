@@ -3,6 +3,8 @@ import { Playfair_Display, Work_Sans, JetBrains_Mono } from "next/font/google";
 
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { CampaignAssistant } from "@/components/assistant/campaign-assistant";
+import { LanguageProvider } from "@/lib/i18n";
 
 import "./globals.css";
 
@@ -75,9 +77,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfairDisplay.variable} ${workSans.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-onyx-950 font-sans">
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <LanguageProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+          <CampaignAssistant />
+        </LanguageProvider>
       </body>
     </html>
   );

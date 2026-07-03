@@ -9,8 +9,35 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { navGroups } from "@/data/nav";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
+
+function LanguageToggle({ className }: { className?: string }) {
+  const { lang, setLang } = useT();
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center rounded-full border border-black/15 p-0.5 text-[11px] font-semibold",
+        className
+      )}
+    >
+      {(["en", "sw"] as const).map((l) => (
+        <button
+          key={l}
+          onClick={() => setLang(l)}
+          className={cn(
+            "rounded-full px-2.5 py-1 uppercase tracking-widest transition-colors",
+            lang === l ? "bg-party-yellow text-black" : "text-black/50"
+          )}
+        >
+          {l}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function SiteHeader() {
+  const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -46,7 +73,7 @@ export function SiteHeader() {
                 H.E. Hon. Dr. William Ruto
               </span>
               <span className="text-[11px] uppercase tracking-widest text-black/50">
-                President of Kenya
+                {t("President of Kenya")}
               </span>
             </span>
           </Link>
@@ -69,7 +96,7 @@ export function SiteHeader() {
                       : "text-black/65 hover:text-black"
                   )}
                 >
-                  {group.label}
+                  {t(group.label)}
                   <ChevronDown
                     size={13}
                     className={cn(
@@ -96,7 +123,7 @@ export function SiteHeader() {
                             className="block rounded-xl px-4 py-3 transition-colors hover:bg-black/[0.04]"
                           >
                             <p className="text-sm font-medium text-black">
-                              {link.label}
+                              {t(link.label)}
                             </p>
                             <p className="mt-0.5 text-xs text-black/45">
                               {link.description}
@@ -111,9 +138,10 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <LanguageToggle />
             <Button size="sm" asChild>
-              <Link href="/why-ruto#pledge">Join the Movement</Link>
+              <Link href="/why-ruto#pledge">{t("Join the Movement")}</Link>
             </Button>
           </div>
 
@@ -137,9 +165,13 @@ export function SiteHeader() {
             className="overflow-hidden border-b border-black/10 bg-white md:hidden"
           >
             <div className="flex max-h-[75vh] flex-col gap-6 overflow-y-auto px-6 py-6">
+              <div className="flex items-center justify-between">
+                <span className="kicker">{t("Language")}</span>
+                <LanguageToggle />
+              </div>
               {navGroups.map((group) => (
                 <div key={group.label}>
-                  <p className="kicker mb-3">{group.label}</p>
+                  <p className="kicker mb-3">{t(group.label)}</p>
                   <div className="flex flex-col">
                     {group.links.map((link) => (
                       <Link
@@ -148,7 +180,7 @@ export function SiteHeader() {
                         onClick={() => setMenuOpen(false)}
                         className="py-2.5 text-sm font-medium text-black/80"
                       >
-                        {link.label}
+                        {t(link.label)}
                       </Link>
                     ))}
                   </div>
@@ -156,7 +188,7 @@ export function SiteHeader() {
               ))}
               <Button className="w-full" asChild>
                 <Link href="/why-ruto#pledge" onClick={() => setMenuOpen(false)}>
-                  Join the Movement
+                  {t("Join the Movement")}
                 </Link>
               </Button>
             </div>

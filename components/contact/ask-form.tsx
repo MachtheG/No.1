@@ -19,6 +19,7 @@ export function AskForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle"
   );
+  const [anonymous, setAnonymous] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -59,10 +60,11 @@ export function AskForm() {
                 Full Name
               </label>
               <input
-                required
+                required={!anonymous}
+                disabled={anonymous}
                 type="text"
-                placeholder="Jane Wanjiku"
-                className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+                placeholder={anonymous ? "Hidden — anonymous" : "Jane Wanjiku"}
+                className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none disabled:opacity-40"
               />
             </div>
             <div>
@@ -70,13 +72,24 @@ export function AskForm() {
                 Email Address
               </label>
               <input
-                required
+                required={!anonymous}
+                disabled={anonymous}
                 type="email"
-                placeholder="jane@example.com"
-                className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+                placeholder={anonymous ? "Hidden — anonymous" : "jane@example.com"}
+                className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none disabled:opacity-40"
               />
             </div>
           </div>
+
+          <label className="flex items-center gap-2.5 text-sm text-black/60">
+            <input
+              type="checkbox"
+              checked={anonymous}
+              onChange={(e) => setAnonymous(e.target.checked)}
+              className="h-4 w-4 rounded border-black/20 accent-party-yellow"
+            />
+            Submit anonymously (your name and email will not be shown)
+          </label>
 
           <div>
             <label className="mb-1.5 block text-xs uppercase tracking-widest text-black/40">
@@ -109,6 +122,12 @@ export function AskForm() {
               className="w-full resize-none rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
             />
           </div>
+
+          <p className="text-xs leading-relaxed text-black/40">
+            Every submission passes through a moderation queue before it can
+            appear in the public Q&amp;A. Selected questions are answered in
+            regular batches.
+          </p>
 
           <Button
             type="submit"

@@ -19,6 +19,16 @@ export const navGroups: NavGroup[] = [
         description: "The Transformation Ledger, audited by pillar",
       },
       {
+        label: "What We've Delivered",
+        href: "/delivered",
+        description: "A scorecard of completed initiatives, by sector",
+      },
+      {
+        label: "Major Projects",
+        href: "/projects",
+        description: "In-progress and upcoming flagship projects",
+      },
+      {
         label: "My Manifesto",
         href: "/manifesto",
         description: "The formal policy platform, pillar by pillar",
@@ -62,6 +72,21 @@ export const navGroups: NavGroup[] = [
         label: "Election Center",
         href: "/elections",
         description: "2027 countdown & the 2022 result, county by county",
+      },
+      {
+        label: "Campaign Roadmap",
+        href: "/roadmap",
+        description: "Where we've been and where we're going",
+      },
+      {
+        label: "Campaign Updates",
+        href: "/updates",
+        description: "The latest news from the movement",
+      },
+      {
+        label: "Donate",
+        href: "/donate",
+        description: "Fuel the movement — M-Pesa, card or PayPal",
       },
       {
         label: "Media Room",

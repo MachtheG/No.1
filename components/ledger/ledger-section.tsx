@@ -75,10 +75,12 @@ export function LedgerSection({
           ))}
         </div>
 
-        <div className="relative mt-16">
-          <div className="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-black/15 via-black/10 to-transparent lg:block" />
+        <div className="mt-12">
           <AnimatePresence mode="popLayout">
-            <motion.div layout className="flex flex-col gap-6 lg:gap-8">
+            <motion.div
+              layout
+              className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+            >
               {filtered.map((milestone, index) => (
                 <MilestoneCard
                   key={milestone.id}

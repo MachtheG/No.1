@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Twitter } from "lucide-react";
+import { Mail, MapPin, Twitter, MessageSquareQuote } from "lucide-react";
 
 import { PageHero } from "@/components/ui/page-hero";
 import { Container } from "@/components/ui/container";
+import { Kicker } from "@/components/ui/badge";
 import { AskForm } from "@/components/contact/ask-form";
+import { answeredQuestions } from "@/data/answered";
 
 export const metadata: Metadata = {
   title: "Ask the President",
@@ -65,6 +67,46 @@ export default function ContactPage() {
               </div>
             </div>
             <AskForm />
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-black/10 bg-onyx-900 py-20 lg:py-28">
+        <Container>
+          <Kicker>Answered Questions</Kicker>
+          <h2 className="mt-6 max-w-2xl text-balance font-display text-4xl font-medium leading-[1.05] tracking-tighter text-black sm:text-5xl">
+            Straight answers,{" "}
+            <span className="italic text-party-gold">on the record.</span>
+          </h2>
+          <p className="mt-4 max-w-xl text-sm text-black/50">
+            A selection of moderated questions from Kenyans, answered directly.
+          </p>
+
+          <div className="mt-12 grid gap-5 lg:grid-cols-2">
+            {answeredQuestions.map((q) => (
+              <div
+                key={q.id}
+                className="rounded-2xl border border-black/10 bg-white p-6"
+              >
+                <div className="flex items-start gap-3">
+                  <MessageSquareQuote
+                    size={18}
+                    className="mt-0.5 flex-shrink-0 text-party-gold"
+                  />
+                  <div>
+                    <p className="font-display text-lg font-medium leading-snug text-black">
+                      {q.question}
+                    </p>
+                    <p className="mt-1 text-xs uppercase tracking-widest text-black/40">
+                      {q.asker} &middot; {q.county}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 border-t border-black/10 pt-4 text-sm leading-relaxed text-black/65">
+                  {q.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
