@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Quote } from "lucide-react";
 
 import { legacyQuotes } from "@/data/gallery";
+import { useT } from "@/lib/i18n";
 
 function ParallaxQuote({
   quote,
@@ -15,6 +16,7 @@ function ParallaxQuote({
   attribution: string;
   index: number;
 }) {
+  const { t } = useT();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -40,7 +42,7 @@ function ParallaxQuote({
       >
         <Quote className="mx-auto mb-6 text-party-gold/50" size={32} />
         <p className="text-balance font-display text-2xl font-medium italic leading-snug text-black sm:text-3xl lg:text-4xl">
-          &ldquo;{quote}&rdquo;
+          &ldquo;{t(quote)}&rdquo;
         </p>
         <p className="mt-6 font-mono text-xs uppercase tracking-widest text-black/40">
           &mdash; {attribution}

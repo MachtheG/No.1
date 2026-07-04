@@ -6,10 +6,12 @@ import { ExternalLink, Newspaper, PlayCircle } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { YoutubeEmbed } from "@/components/media/youtube-embed";
 import { journeyMilestones } from "@/data/journey";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function JourneyTimeline() {
+  const { t } = useT();
   return (
     <section className="relative bg-white py-28 lg:py-36">
       <Container>
@@ -30,10 +32,10 @@ export function JourneyTimeline() {
                   {m.year}
                 </span>
                 <h3 className="mt-2 font-display text-2xl font-medium text-black sm:text-3xl">
-                  {m.title}
+                  {t(m.title)}
                 </h3>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-black/55">
-                  {m.description}
+                  {t(m.description)}
                 </p>
 
                 {m.youtubeId ? (
@@ -53,7 +55,9 @@ export function JourneyTimeline() {
                   ) : (
                     <Newspaper size={13} />
                   )}
-                  <span>Source: {m.source.title}</span>
+                  <span>
+                    {t("Source:")} {m.source.title}
+                  </span>
                   <ExternalLink size={11} />
                 </a>
               </motion.div>

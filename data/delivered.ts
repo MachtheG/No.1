@@ -37,7 +37,7 @@ export const deliveredItems: DeliveredItem[] = [
     id: "sha-registration",
     title: "Universal Health Coverage Rollout",
     sector: "Healthcare",
-    metric: "27M+",
+    metric: "24M+",
     metricLabel: "Kenyans registered under SHA",
     county: "Nationwide",
     blurb:
@@ -47,7 +47,7 @@ export const deliveredItems: DeliveredItem[] = [
     id: "housing-units",
     title: "Affordable Housing Units",
     sector: "Housing",
-    metric: "161,000+",
+    metric: "181,000+",
     metricLabel: "Units under construction",
     county: "Nationwide",
     blurb:

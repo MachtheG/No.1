@@ -10,10 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Kicker } from "@/components/ui/badge";
 import { QuickStatsBar } from "@/components/hero/quick-stats-bar";
 import { unsplash } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
+  const { t } = useT();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -87,10 +89,9 @@ export function HeroSection() {
             transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
             className="mt-8 max-w-xl text-balance text-lg leading-relaxed text-black/60"
           >
-            A bottom-up economic revolution. Universal healthcare for every
-            household. Dignified homes for the working class. His Excellency
-            Dr. William Samoei Ruto is rewriting what a nation can deliver for
-            its people — measured in results, not rhetoric.
+            {t(
+              "A bottom-up economic revolution. Universal healthcare for every household. Dignified homes for the working class. His Excellency Dr. William Samoei Ruto is rewriting what a nation can deliver for its people — measured in results, not rhetoric."
+            )}
           </motion.p>
 
           <motion.div
@@ -100,10 +101,10 @@ export function HeroSection() {
             className="mt-10 flex flex-wrap items-center gap-4"
           >
             <Button size="lg" asChild>
-              <a href="#pledge">Join the Movement</a>
+              <a href="#pledge">{t("Join the Movement")}</a>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="#ledger">Explore the Ledger</a>
+              <a href="#ledger">{t("Explore the Ledger")}</a>
             </Button>
           </motion.div>
         </motion.div>

@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 export function Kicker({
   children,
@@ -7,10 +10,13 @@ export function Kicker({
   children: React.ReactNode;
   className?: string;
 }) {
+  const { t } = useT();
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <span className="h-px w-8 bg-gradient-to-r from-uda-500 to-transparent" />
-      <span className="kicker">{children}</span>
+      <span className="kicker">
+        {typeof children === "string" ? t(children) : children}
+      </span>
     </div>
   );
 }
@@ -22,6 +28,7 @@ export function PillarBadge({
   color: "uda" | "forest";
   children: React.ReactNode;
 }) {
+  const { t } = useT();
   const styles =
     color === "uda"
       ? "border-uda-500/40 bg-uda-500/10 text-party-gold"
@@ -34,7 +41,7 @@ export function PillarBadge({
         styles
       )}
     >
-      {children}
+      {typeof children === "string" ? t(children) : children}
     </span>
   );
 }

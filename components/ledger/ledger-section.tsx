@@ -8,6 +8,7 @@ import { Kicker } from "@/components/ui/badge";
 import { milestones, pillarMeta, type Pillar } from "@/data/milestones";
 import { MilestoneCard } from "@/components/ledger/milestone-card";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const FILTERS: { id: Pillar | "all"; label: string }[] = [
   { id: "all", label: "All Pillars" },
@@ -22,6 +23,7 @@ export function LedgerSection({
 }: {
   showHeading?: boolean;
 }) {
+  const { t } = useT();
   const [filter, setFilter] = useState<Pillar | "all">("all");
 
   const filtered = useMemo(
@@ -46,13 +48,13 @@ export function LedgerSection({
             <div className="max-w-2xl">
               <Kicker>The Transformation Ledger</Kicker>
               <h2 className="mt-6 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tighter text-black sm:text-5xl lg:text-6xl">
-                Every milestone,{" "}
-                <span className="italic text-party-gold">verified.</span>
+                {t("Every milestone,")}{" "}
+                <span className="italic text-party-gold">{t("verified.")}</span>
               </h2>
               <p className="mt-5 max-w-lg text-balance text-base leading-relaxed text-black/50">
-                A running record of policy converted into outcomes — audited
-                across the four pillars defining this administration&apos;s
-                legacy.
+                {t(
+                  "A running record of policy converted into outcomes — audited across the four pillars defining this administration's legacy."
+                )}
               </p>
             </div>
           </div>
@@ -70,7 +72,7 @@ export function LedgerSection({
                   : "border-black/10 text-black/50 hover:border-black/25 hover:text-black/80"
               )}
             >
-              {f.label}
+              {t(f.label)}
             </button>
           ))}
         </div>

@@ -1,5 +1,3 @@
-import { unsplash } from "@/lib/utils";
-
 export interface GalleryItem {
   id: string;
   caption: string;
@@ -13,56 +11,56 @@ export const galleryItems: GalleryItem[] = [
     id: "un-general-assembly",
     caption: "United Nations General Assembly",
     context: "New York, 2024",
-    image: unsplash("photo-1750074275893-b7c6ddbf42b1"),
+    image: "/images/Ruto at UN General assembly new york.jpeg",
     span: "tall",
   },
   {
     id: "g20-summit",
     caption: "G20 Summit Roundtable",
     context: "New Delhi, 2023",
-    image: unsplash("photo-1658761492656-a088d80f65c5"),
+    image: "/images/G20 roundtable.jpeg",
     span: "wide",
   },
   {
     id: "cop28",
     caption: "COP28 Climate Leadership Panel",
     context: "Dubai, 2023",
-    image: unsplash("photo-1485394595691-5411947d63a4"),
+    image: "/images/COP28.jpeg",
     span: "square",
   },
   {
     id: "white-house-state-visit",
     caption: "State Visit — The White House",
     context: "Washington D.C., 2024",
-    image: unsplash("photo-1594663872347-2bea8329cd94"),
+    image: "/images/state visit white house.jpeg",
     span: "tall",
   },
   {
     id: "africa-climate-summit",
     caption: "Africa Climate Summit, Host Chair",
     context: "Nairobi, 2023",
-    image: unsplash("photo-1485394595691-5411947d63a4", 1400),
+    image: "/images/Afica climate summit.jpeg",
     span: "square",
   },
   {
     id: "au-assembly",
     caption: "African Union Assembly",
     context: "Addis Ababa, 2024",
-    image: unsplash("flagged/photo-1568187113326-974ff6d0c6b6"),
+    image: "/images/Africa union assembly addis Ababa.jpeg",
     span: "wide",
   },
   {
     id: "clean-cooking-africa",
     caption: "Clean Cooking Africa Summit, Host",
     context: "Nairobi, 2024",
-    image: unsplash("photo-1723967052599-93403a001bb1"),
+    image: "/images/clean cooking africa sumit.jpeg",
     span: "square",
   },
   {
     id: "commonwealth-heads",
     caption: "Commonwealth Heads of Government",
     context: "Apia, 2024",
-    image: unsplash("photo-1658761492656-a088d80f65c5", 1400),
+    image: "/images/commonwealth heads of government.jpeg",
     span: "tall",
   },
 ];

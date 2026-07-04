@@ -1,6 +1,9 @@
+"use client";
+
 import { MapPin } from "lucide-react";
 
 import { type Project, stageLabels } from "@/data/projects";
+import { useT } from "@/lib/i18n";
 
 const STAGE_COLOR: Record<string, string> = {
   planning: "bg-black/40",
@@ -10,31 +13,32 @@ const STAGE_COLOR: Record<string, string> = {
 };
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useT();
   return (
     <div className="flex flex-col rounded-2xl border border-black/10 bg-black/[0.02] p-6">
       <div className="flex items-center justify-between gap-3">
         <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-black/40">
-          <MapPin size={12} /> {project.county}
+          <MapPin size={12} /> {t(project.county)}
         </span>
         <span className="rounded-full border border-black/10 px-3 py-1 text-[11px] font-medium uppercase tracking-widest text-black/60">
-          {stageLabels[project.stage]}
+          {t(stageLabels[project.stage])}
         </span>
       </div>
 
       <h3 className="mt-4 font-display text-xl font-medium text-black">
-        {project.name}
+        {t(project.name)}
       </h3>
       <p className="mt-1 text-xs uppercase tracking-widest text-party-gold">
-        {project.sector} &middot; {project.target}
+        {t(project.sector)} &middot; {t(project.target)}
       </p>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-black/50">
-        {project.summary}
+        {t(project.summary)}
       </p>
 
       <div className="mt-6">
         <div className="flex items-center justify-between text-xs">
           <span className="uppercase tracking-widest text-black/40">
-            Progress
+            {t("Progress")}
           </span>
           <span className="font-mono font-semibold text-black/70">
             {project.progress}%

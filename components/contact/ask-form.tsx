@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useT } from "@/lib/i18n";
 
 const TOPICS = [
   "Healthcare (SHA)",
@@ -16,6 +17,7 @@ const TOPICS = [
 ];
 
 export function AskForm() {
+  const { t } = useT();
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle"
   );
@@ -38,11 +40,12 @@ export function AskForm() {
         >
           <CheckCircle2 className="text-forest-600" size={40} />
           <p className="font-display text-xl font-medium text-black">
-            Your message has been received.
+            {t("Your message has been received.")}
           </p>
           <p className="max-w-sm text-sm text-black/50">
-            The correspondence team reviews every submission. High-volume
-            topics inform future Town Hall Q&amp;A sessions.
+            {t(
+              "The correspondence team reviews every submission. High-volume topics inform future Town Hall Q&A sessions."
+            )}
           </p>
         </motion.div>
       ) : (
@@ -57,25 +60,29 @@ export function AskForm() {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-1.5 block text-xs uppercase tracking-widest text-black/40">
-                Full Name
+                {t("Full Name")}
               </label>
               <input
                 required={!anonymous}
                 disabled={anonymous}
                 type="text"
-                placeholder={anonymous ? "Hidden — anonymous" : "Jane Wanjiku"}
+                placeholder={
+                  anonymous ? t("Hidden — anonymous") : "Jane Wanjiku"
+                }
                 className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none disabled:opacity-40"
               />
             </div>
             <div>
               <label className="mb-1.5 block text-xs uppercase tracking-widest text-black/40">
-                Email Address
+                {t("Email Address")}
               </label>
               <input
                 required={!anonymous}
                 disabled={anonymous}
                 type="email"
-                placeholder={anonymous ? "Hidden — anonymous" : "jane@example.com"}
+                placeholder={
+                  anonymous ? t("Hidden — anonymous") : "jane@example.com"
+                }
                 className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none disabled:opacity-40"
               />
             </div>
@@ -88,12 +95,12 @@ export function AskForm() {
               onChange={(e) => setAnonymous(e.target.checked)}
               className="h-4 w-4 rounded border-black/20 accent-party-yellow"
             />
-            Submit anonymously (your name and email will not be shown)
+            {t("Submit anonymously (your name and email will not be shown)")}
           </label>
 
           <div>
             <label className="mb-1.5 block text-xs uppercase tracking-widest text-black/40">
-              Topic
+              {t("Topic")}
             </label>
             <select
               required
@@ -101,11 +108,11 @@ export function AskForm() {
               className="w-full rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black/70 focus:border-party-yellow/60 focus:outline-none"
             >
               <option value="" disabled>
-                Select a topic
+                {t("Select a topic")}
               </option>
-              {TOPICS.map((t) => (
-                <option key={t} value={t} className="bg-onyx-900">
-                  {t}
+              {TOPICS.map((topic) => (
+                <option key={topic} value={topic} className="bg-onyx-900">
+                  {t(topic)}
                 </option>
               ))}
             </select>
@@ -113,20 +120,20 @@ export function AskForm() {
 
           <div>
             <label className="mb-1.5 block text-xs uppercase tracking-widest text-black/40">
-              Your Message
+              {t("Your Message")}
             </label>
             <textarea
               required
               rows={5}
-              placeholder="Ask a question or share your feedback..."
+              placeholder={t("Ask a question or share your feedback...")}
               className="w-full resize-none rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
             />
           </div>
 
           <p className="text-xs leading-relaxed text-black/40">
-            Every submission passes through a moderation queue before it can
-            appear in the public Q&amp;A. Selected questions are answered in
-            regular batches.
+            {t(
+              "Every submission passes through a moderation queue before it can appear in the public Q&A. Selected questions are answered in regular batches."
+            )}
           </p>
 
           <Button
@@ -135,7 +142,7 @@ export function AskForm() {
             className="mt-2 w-full sm:w-auto sm:self-start"
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? "Sending..." : "Send Message"}
+            {status === "submitting" ? t("Sending...") : t("Send Message")}
             <ArrowRight size={16} />
           </Button>
         </motion.form>

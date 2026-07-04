@@ -6,6 +6,7 @@ import { Map as MapIcon, Table2 } from "lucide-react";
 import { countyResults, type CountyResult } from "@/data/elections";
 import { KenyaMap } from "@/components/map/kenya-map";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 // Validated sequential ramp (dataviz skill: node scripts/validate_palette.js
 // --mode light --surface #fcfcfb --ordinal → ALL CHECKS PASS). Low share reads
@@ -22,6 +23,7 @@ function bucketIndex(share: number) {
 }
 
 export function ElectionHeatmap() {
+  const { t } = useT();
   const [view, setView] = useState<"map" | "table">("map");
 
   const byCounty = useMemo(() => {
@@ -40,11 +42,12 @@ export function ElectionHeatmap() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-sm font-medium text-black">
-            Presidential result share by county — 2022
+            {t("Presidential result share by county — 2022")}
           </p>
           <p className="mt-1 max-w-md text-xs text-black/40">
-            Share of the two-way vote (Ruto vs. the Late Raila Odinga) won by
-            William Ruto. Source: IEBC county returns.
+            {t(
+              "Share of the two-way vote (Ruto vs. the Late Raila Odinga) won by William Ruto. Source: IEBC county returns."
+            )}
           </p>
         </div>
         <div className="flex gap-1 rounded-full border border-black/10 bg-black/[0.02] p-1">
@@ -57,7 +60,7 @@ export function ElectionHeatmap() {
                 : "text-black/50 hover:text-black"
             )}
           >
-            <MapIcon size={13} /> Map
+            <MapIcon size={13} /> {t("Map")}
           </button>
           <button
             onClick={() => setView("table")}
@@ -68,7 +71,7 @@ export function ElectionHeatmap() {
                 : "text-black/50 hover:text-black"
             )}
           >
-            <Table2 size={13} /> Table
+            <Table2 size={13} /> {t("Table")}
           </button>
         </div>
       </div>
@@ -76,7 +79,7 @@ export function ElectionHeatmap() {
       {/* Legend */}
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <span className="text-xs uppercase tracking-widest text-black/40">
-          Ruto vote share
+          {t("Ruto vote share")}
         </span>
         {RAMP.map((color, i) => (
           <div key={color} className="flex items-center gap-1.5">
@@ -107,10 +110,10 @@ export function ElectionHeatmap() {
                   <>
                     <p className="text-xs font-semibold text-white">{county}</p>
                     <p className="mt-1 text-[11px] text-party-yellow">
-                      Ruto: {c.ruto.toLocaleString()} ({share.toFixed(1)}%)
+                      {t("Ruto:")} {c.ruto.toLocaleString()} ({share.toFixed(1)}%)
                     </p>
                     <p className="text-[11px] text-white/60">
-                      The Late Raila (Baba): {c.odinga.toLocaleString()}
+                      {t("The Late Raila (Baba):")} {c.odinga.toLocaleString()}
                     </p>
                   </>
                 );
@@ -123,13 +126,15 @@ export function ElectionHeatmap() {
           <table className="w-full min-w-[520px] text-left text-sm">
             <thead>
               <tr className="border-b border-black/10 bg-black/[0.03] text-xs uppercase tracking-widest text-black/40">
-                <th className="px-4 py-3 font-medium">County</th>
-                <th className="px-4 py-3 font-medium">Region</th>
+                <th className="px-4 py-3 font-medium">{t("County")}</th>
+                <th className="px-4 py-3 font-medium">{t("Region")}</th>
                 <th className="px-4 py-3 text-right font-medium">Ruto</th>
                 <th className="px-4 py-3 text-right font-medium">
-                  Raila (Baba)
+                  {t("Raila (Baba)")}
                 </th>
-                <th className="px-4 py-3 text-right font-medium">Ruto Share</th>
+                <th className="px-4 py-3 text-right font-medium">
+                  {t("Ruto Share")}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -143,7 +148,9 @@ export function ElectionHeatmap() {
                     <td className="px-4 py-2.5 font-medium text-black">
                       {c.county}
                     </td>
-                    <td className="px-4 py-2.5 text-black/50">{c.region}</td>
+                    <td className="px-4 py-2.5 text-black/50">
+                      {t(c.region)}
+                    </td>
                     <td className="px-4 py-2.5 text-right text-black/70">
                       {c.ruto.toLocaleString()}
                     </td>

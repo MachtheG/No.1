@@ -1,14 +1,18 @@
+"use client";
+
 import { Container } from "@/components/ui/container";
 import { Kicker } from "@/components/ui/badge";
 import { StoriesCarousel } from "@/components/persuasion/stories-carousel";
 import { FutureCalculator } from "@/components/persuasion/future-calculator";
 import { PledgeCta } from "@/components/persuasion/pledge-cta";
+import { useT } from "@/lib/i18n";
 
 export function PersuasionSection({
   showHeading = true,
 }: {
   showHeading?: boolean;
 }) {
+  const { t } = useT();
   return (
     <section id="voices" className="relative bg-onyx-900 py-28 lg:py-36">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -17,12 +21,13 @@ export function PersuasionSection({
           <div className="max-w-2xl">
             <Kicker>Voices of Kenya</Kicker>
             <h2 className="mt-6 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tighter text-black sm:text-5xl lg:text-6xl">
-              Policy, felt in the{" "}
-              <span className="italic text-forest-600">household.</span>
+              {t("Policy, felt in the")}{" "}
+              <span className="italic text-forest-600">{t("household.")}</span>
             </h2>
             <p className="mt-5 max-w-lg text-balance text-base leading-relaxed text-black/50">
-              Behind every statistic is a name. This is what transformation
-              looks like on the ground, in the words of the Kenyans living it.
+              {t(
+                "Behind every statistic is a name. This is what transformation looks like on the ground, in the words of the Kenyans living it."
+              )}
             </p>
           </div>
         </Container>

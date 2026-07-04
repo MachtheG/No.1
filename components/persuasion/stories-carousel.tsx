@@ -7,10 +7,12 @@ import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { stories } from "@/data/stories";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function StoriesCarousel() {
+  const { t } = useT();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const story = stories[index]!;
@@ -35,15 +37,15 @@ export function StoriesCarousel() {
             transition={{ duration: 0.45, ease: EASE }}
           >
             <p className="mt-6 text-sm font-semibold uppercase tracking-widest text-party-gold">
-              {story.name} &middot; {story.role}, {story.location}
+              {story.name} &middot; {t(story.role)}, {story.location}
             </p>
             <p className="mt-4 text-balance font-display text-2xl font-medium italic leading-snug text-black sm:text-3xl">
-              &ldquo;{story.quote}&rdquo;
+              &ldquo;{t(story.quote)}&rdquo;
             </p>
             <div className="mt-8 flex items-start gap-3 rounded-xl border border-forest-400/20 bg-forest-500/[0.06] p-4">
               <span className="mt-0.5 h-2 w-2 flex-shrink-0 rounded-full bg-forest-500" />
               <p className="text-sm leading-relaxed text-black/70">
-                {story.outcome}
+                {t(story.outcome)}
               </p>
             </div>
           </motion.div>

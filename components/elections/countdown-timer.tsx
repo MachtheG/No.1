@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { useT } from "@/lib/i18n";
+
 function getTimeLeft(target: Date) {
   const diff = Math.max(0, target.getTime() - Date.now());
   return {
@@ -26,6 +28,7 @@ export function CountdownTimer({
   target: string;
   size?: "default" | "compact";
 }) {
+  const { t } = useT();
   const targetDate = new Date(target);
   const [timeLeft, setTimeLeft] = useState<ReturnType<typeof getTimeLeft> | null>(
     null
@@ -64,7 +67,7 @@ export function CountdownTimer({
             {String(display[unit.key]).padStart(2, "0")}
           </span>
           <span className="mt-1 text-[9px] uppercase tracking-widest text-black/40 sm:text-xs">
-            {unit.label}
+            {t(unit.label)}
           </span>
         </div>
       ))}

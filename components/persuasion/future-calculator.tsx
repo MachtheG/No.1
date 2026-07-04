@@ -16,6 +16,7 @@ import {
 import { Kicker } from "@/components/ui/badge";
 import { demographics, type Demographic } from "@/data/demographics";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -29,6 +30,7 @@ const ICONS: Record<Demographic["icon"], typeof Sprout> = {
 };
 
 export function FutureCalculator() {
+  const { t } = useT();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = demographics.find((d) => d.id === selectedId) ?? null;
 
@@ -37,7 +39,7 @@ export function FutureCalculator() {
       <div className="max-w-2xl">
         <Kicker>See Your Future in the Vision</Kicker>
         <h3 className="mt-6 text-balance font-display text-3xl font-medium leading-tight text-black sm:text-4xl">
-          Select who you are. See what the administration delivers for you.
+          {t("Select who you are. See what the administration delivers for you.")}
         </h3>
       </div>
 
@@ -58,7 +60,7 @@ export function FutureCalculator() {
             >
               <Icon size={24} strokeWidth={1.6} />
               <span className="text-xs font-medium leading-tight">
-                {demo.label}
+                {t(demo.label)}
               </span>
             </button>
           );
@@ -86,10 +88,10 @@ export function FutureCalculator() {
                 >
                   <CheckCircle2 className="text-forest-600" size={20} />
                   <p className="mt-3 font-display text-base font-medium text-black">
-                    {benefit.title}
+                    {t(benefit.title)}
                   </p>
                   <p className="mt-1.5 text-sm leading-relaxed text-black/50">
-                    {benefit.detail}
+                    {t(benefit.detail)}
                   </p>
                 </motion.div>
               ))}
@@ -101,7 +103,7 @@ export function FutureCalculator() {
               transition={{ delay: 0.35 }}
               className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-party-gold transition-colors hover:text-party-gold"
             >
-              Claim your place in this vision
+              {t("Claim your place in this vision")}
               <ArrowRight size={16} />
             </motion.a>
           </motion.div>

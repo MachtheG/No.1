@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { galleryItems } from "@/data/gallery";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const SPAN_CLASSES: Record<string, string> = {
   tall: "row-span-2",
@@ -16,6 +17,7 @@ const SPAN_CLASSES: Record<string, string> = {
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function MasonryGallery() {
+  const { t } = useT();
   return (
     <Container>
       <div className="grid auto-rows-[180px] grid-cols-2 gap-3 lg:auto-rows-[220px] lg:grid-cols-4 lg:gap-4">
@@ -41,7 +43,7 @@ export function MasonryGallery() {
               onLoad={(e) => (e.currentTarget.style.opacity = "1")}
             />
             <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-onyx-950/95 via-onyx-950/10 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <p className="text-sm font-medium text-black">{item.caption}</p>
+              <p className="text-sm font-medium text-black">{t(item.caption)}</p>
               <p className="font-mono text-xs uppercase tracking-widest text-party-gold/80">
                 {item.context}
               </p>

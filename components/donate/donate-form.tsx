@@ -6,6 +6,7 @@ import { CheckCircle2, Smartphone, CreditCard, Wallet } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const AMOUNTS = [200, 500, 1000, 5000];
 const METHODS = [
@@ -15,6 +16,7 @@ const METHODS = [
 ] as const;
 
 export function DonateForm() {
+  const { t } = useT();
   const [amount, setAmount] = useState<number>(500);
   const [custom, setCustom] = useState("");
   const [method, setMethod] = useState<string>("mpesa");
@@ -40,22 +42,22 @@ export function DonateForm() {
       >
         <CheckCircle2 className="mx-auto text-forest-600" size={44} />
         <h3 className="mt-4 font-display text-2xl font-medium text-black">
-          Thank you for your support.
+          {t("Thank you for your support.")}
         </h3>
         <p className="mx-auto mt-2 max-w-sm text-sm text-black/55">
-          This is a demonstration confirmation for a pledged contribution of{" "}
+          {t("This is a demonstration confirmation for a pledged contribution of")}{" "}
           <span className="font-semibold text-black">
             KES {effectiveAmount.toLocaleString()}
           </span>{" "}
-          via {METHODS.find((m) => m.id === method)?.label}. No payment has been
-          processed.
+          {t("via")} {t(METHODS.find((m) => m.id === method)?.label ?? "")}.{" "}
+          {t("No payment has been processed.")}
         </p>
         <Button
           variant="outline"
           className="mt-6"
           onClick={() => setStatus("idle")}
         >
-          Make another pledge
+          {t("Make another pledge")}
         </Button>
       </motion.div>
     );
@@ -69,7 +71,7 @@ export function DonateForm() {
       {/* Amount */}
       <fieldset>
         <legend className="text-xs uppercase tracking-widest text-black/40">
-          Choose an amount (KES)
+          {t("Choose an amount (KES)")}
         </legend>
         <div className="mt-3 grid grid-cols-4 gap-2">
           {AMOUNTS.map((a) => (
@@ -96,7 +98,7 @@ export function DonateForm() {
           min={1}
           value={custom}
           onChange={(e) => setCustom(e.target.value)}
-          placeholder="Or enter a custom amount"
+          placeholder={t("Or enter a custom amount")}
           className="mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
         />
       </fieldset>
@@ -104,7 +106,7 @@ export function DonateForm() {
       {/* Method */}
       <fieldset className="mt-6">
         <legend className="text-xs uppercase tracking-widest text-black/40">
-          Payment method
+          {t("Payment method")}
         </legend>
         <div className="mt-3 grid grid-cols-3 gap-2">
           {METHODS.map((m) => (
@@ -129,33 +131,33 @@ export function DonateForm() {
       {/* Donor info + compliance disclosure */}
       <fieldset className="mt-6">
         <legend className="text-xs uppercase tracking-widest text-black/40">
-          Your details
+          {t("Your details")}
         </legend>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <input
             required
-            placeholder="Full name"
+            placeholder={t("Full name")}
             className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
           />
           <input
             required
-            placeholder="Phone number"
+            placeholder={t("Phone number")}
             className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
           />
           <input
             required
-            placeholder="National ID / Passport no."
+            placeholder={t("National ID / Passport no.")}
             className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
           />
           <input
-            placeholder="County of residence"
+            placeholder={t("County of residence")}
             className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
           />
         </div>
         <p className="mt-3 text-xs leading-relaxed text-black/40">
-          Donor details are collected to meet campaign-finance disclosure
-          requirements. Fields shown here are a scaffold for legal review — this
-          demo does not store or transmit any data.
+          {t(
+            "Donor details are collected to meet campaign-finance disclosure requirements. Fields shown here are a scaffold for legal review — this demo does not store or transmit any data."
+          )}
         </p>
       </fieldset>
 
@@ -166,8 +168,8 @@ export function DonateForm() {
         disabled={status === "submitting" || effectiveAmount <= 0}
       >
         {status === "submitting"
-          ? "Processing…"
-          : `Donate KES ${effectiveAmount.toLocaleString()}`}
+          ? t("Processing…")
+          : `${t("Donate KES")} ${effectiveAmount.toLocaleString()}`}
       </Button>
     </form>
   );

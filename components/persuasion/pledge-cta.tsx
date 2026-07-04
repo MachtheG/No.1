@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { useT } from "@/lib/i18n";
 
 export function PledgeCta() {
+  const { t } = useT();
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle"
   );
@@ -24,14 +26,16 @@ export function PledgeCta() {
       <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div>
           <h3 className="text-balance font-display text-3xl font-medium leading-tight text-black sm:text-4xl lg:text-5xl">
-            Pledge your vote.
+            {t("Pledge your vote.")}
             <br />
-            <span className="italic text-party-gold">Join the movement.</span>
+            <span className="italic text-party-gold">
+              {t("Join the movement.")}
+            </span>
           </h3>
           <p className="mt-5 max-w-md text-balance text-base leading-relaxed text-black/60">
-            Add your name to a nationwide coalition standing behind a proven
-            record of delivery — and be the first to hear where the movement
-            gathers next.
+            {t(
+              "Add your name to a nationwide coalition standing behind a proven record of delivery — and be the first to hear where the movement gathers next."
+            )}
           </p>
         </div>
 
@@ -46,11 +50,10 @@ export function PledgeCta() {
               >
                 <CheckCircle2 className="text-forest-600" size={36} />
                 <p className="font-display text-lg font-medium text-black">
-                  Pledge received.
+                  {t("Pledge received.")}
                 </p>
                 <p className="text-sm text-black/50">
-                  Karibu to the movement — watch your inbox for what&apos;s
-                  next.
+                  {t("Karibu to the movement — watch your inbox for what's next.")}
                 </p>
               </motion.div>
             ) : (
@@ -65,13 +68,13 @@ export function PledgeCta() {
                 <input
                   required
                   type="text"
-                  placeholder="Full name"
+                  placeholder={t("Full name")}
                   className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-uda-500/60 focus:outline-none"
                 />
                 <input
                   required
                   type="tel"
-                  placeholder="Phone number"
+                  placeholder={t("Phone number")}
                   className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-uda-500/60 focus:outline-none"
                 />
                 <select
@@ -80,7 +83,7 @@ export function PledgeCta() {
                   className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black/70 focus:border-uda-500/60 focus:outline-none"
                 >
                   <option value="" disabled>
-                    Select your county
+                    {t("Select your county")}
                   </option>
                   {[
                     "Nairobi",
@@ -91,7 +94,7 @@ export function PledgeCta() {
                     "Other",
                   ].map((c) => (
                     <option key={c} value={c} className="bg-onyx-900">
-                      {c}
+                      {c === "Other" ? t("Other") : c}
                     </option>
                   ))}
                 </select>
@@ -101,7 +104,9 @@ export function PledgeCta() {
                   className="w-full"
                   disabled={status === "submitting"}
                 >
-                  {status === "submitting" ? "Submitting..." : "Pledge My Vote"}
+                  {status === "submitting"
+                    ? t("Submitting...")
+                    : t("Pledge My Vote")}
                   <ArrowRight size={16} />
                 </Button>
               </motion.form>

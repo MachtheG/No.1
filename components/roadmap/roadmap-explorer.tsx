@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/container";
 import { KenyaMap } from "@/components/map/kenya-map";
 import { visits, type Visit } from "@/data/roadmap";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 const PAST_FILL = "#FFD700"; // party yellow — where we've been
 const UPCOMING_FILL = "#008000"; // party green — where we're going
@@ -21,6 +22,7 @@ function formatDate(iso: string) {
 }
 
 export function RoadmapExplorer() {
+  const { t } = useT();
   const [selected, setSelected] = useState<string | null>(null);
 
   const byCounty = useMemo(() => {
@@ -44,12 +46,12 @@ export function RoadmapExplorer() {
         <div>
           <div className="flex flex-wrap items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-widest text-black/50">
-              <span className="h-3 w-3 rounded-sm bg-party-yellow" /> Where we&apos;ve
-              been
+              <span className="h-3 w-3 rounded-sm bg-party-yellow" />{" "}
+              {t("Where we've been")}
             </span>
             <span className="flex items-center gap-1.5 text-xs uppercase tracking-widest text-black/50">
-              <span className="h-3 w-3 rounded-sm bg-party-green" /> Where we&apos;re
-              going
+              <span className="h-3 w-3 rounded-sm bg-party-green" />{" "}
+              {t("Where we're going")}
             </span>
           </div>
 
@@ -70,11 +72,11 @@ export function RoadmapExplorer() {
                     <p className="text-xs font-semibold text-white">{county}</p>
                     {v ? (
                       <p className="mt-1 text-[11px] text-white/70">
-                        {v.theme} &middot; {formatDate(v.date)}
+                        {t(v.theme)} &middot; {formatDate(v.date)}
                       </p>
                     ) : (
                       <p className="mt-1 text-[11px] text-white/50">
-                        No visit scheduled
+                        {t("No visit scheduled")}
                       </p>
                     )}
                   </>
@@ -89,10 +91,10 @@ export function RoadmapExplorer() {
                 <MapPin size={13} /> {selectedVisit.town}, {selectedVisit.county}
               </div>
               <p className="mt-2 font-display text-lg font-medium text-black">
-                {selectedVisit.theme}
+                {t(selectedVisit.theme)}
               </p>
               <p className="mt-1 text-sm text-black/55">
-                {selectedVisit.summary}
+                {t(selectedVisit.summary)}
               </p>
               <p className="mt-2 text-xs text-black/40">
                 {formatDate(selectedVisit.date)}
@@ -106,12 +108,17 @@ export function RoadmapExplorer() {
             <div className="flex items-center gap-2">
               <CalendarClock size={16} className="text-party-green" />
               <h3 className="font-display text-lg font-medium text-black">
-                Where We&apos;re Going
+                {t("Where We're Going")}
               </h3>
             </div>
             <div className="mt-4 space-y-2.5">
               {upcoming.map((v) => (
-                <VisitRow key={v.id} v={v} onClick={() => setSelected(v.county)} active={selected === v.county} />
+                <VisitRow
+                  key={v.id}
+                  v={v}
+                  onClick={() => setSelected(v.county)}
+                  active={selected === v.county}
+                />
               ))}
             </div>
           </div>
@@ -120,12 +127,17 @@ export function RoadmapExplorer() {
             <div className="flex items-center gap-2">
               <CalendarCheck size={16} className="text-party-gold" />
               <h3 className="font-display text-lg font-medium text-black">
-                Where We&apos;ve Been
+                {t("Where We've Been")}
               </h3>
             </div>
             <div className="mt-4 space-y-2.5">
               {past.map((v) => (
-                <VisitRow key={v.id} v={v} onClick={() => setSelected(v.county)} active={selected === v.county} />
+                <VisitRow
+                  key={v.id}
+                  v={v}
+                  onClick={() => setSelected(v.county)}
+                  active={selected === v.county}
+                />
               ))}
             </div>
           </div>
@@ -144,6 +156,7 @@ function VisitRow({
   onClick: () => void;
   active: boolean;
 }) {
+  const { t } = useT();
   return (
     <button
       onClick={onClick}
@@ -158,7 +171,7 @@ function VisitRow({
         <p className="text-sm font-medium text-black">
           {v.town}, {v.county}
         </p>
-        <p className="text-xs text-black/45">{v.theme}</p>
+        <p className="text-xs text-black/45">{t(v.theme)}</p>
       </div>
       <span className="flex-shrink-0 text-xs text-black/40">
         {formatDate(v.date)}

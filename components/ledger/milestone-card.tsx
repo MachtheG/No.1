@@ -1,11 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Newspaper, PlayCircle } from "lucide-react";
 
 import { PillarBadge } from "@/components/ui/badge";
 import { YoutubeEmbed } from "@/components/media/youtube-embed";
 import { pillarMeta, type Milestone } from "@/data/milestones";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -16,6 +18,7 @@ export function MilestoneCard({
   milestone: Milestone;
   index: number;
 }) {
+  const { t } = useT();
   const meta = pillarMeta[milestone.pillar];
   const color = meta.color as "uda" | "forest";
 
@@ -30,6 +33,19 @@ export function MilestoneCard({
     >
       {milestone.youtubeId ? (
         <YoutubeEmbed youtubeId={milestone.youtubeId} title={milestone.title} />
+      ) : milestone.image ? (
+        <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-black/10 bg-onyx-900">
+          <Image
+            src={milestone.image}
+            alt={milestone.title}
+            fill
+            sizes="(min-width: 1024px) 33vw, 100vw"
+            className="object-cover"
+          />
+          <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[11px] uppercase tracking-widest text-white">
+            {milestone.year}
+          </span>
+        </div>
       ) : (
         <div className="relative flex aspect-[16/10] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border border-black/10 bg-onyx-900 p-6 text-center">
           <Newspaper size={28} className="text-black/25" />
@@ -42,10 +58,10 @@ export function MilestoneCard({
       <div className="mt-5 flex flex-1 flex-col">
         <PillarBadge color={color}>{meta.label}</PillarBadge>
         <h3 className="mt-3 text-balance font-display text-xl font-medium leading-tight text-black">
-          {milestone.title}
+          {t(milestone.title)}
         </h3>
         <p className="mt-2 flex-1 text-sm leading-relaxed text-black/50">
-          {milestone.description}
+          {t(milestone.description)}
         </p>
         <div className="mt-5 flex items-baseline gap-2">
           <span
@@ -57,7 +73,7 @@ export function MilestoneCard({
             {milestone.metric.value}
           </span>
           <span className="text-xs uppercase tracking-widest text-black/40">
-            {milestone.metric.label}
+            {t(milestone.metric.label)}
           </span>
         </div>
         <a
@@ -71,7 +87,9 @@ export function MilestoneCard({
           ) : (
             <Newspaper size={13} className="flex-shrink-0" />
           )}
-          <span className="line-clamp-1">Source: {milestone.source.title}</span>
+          <span className="line-clamp-1">
+            {t("Source:")} {milestone.source.title}
+          </span>
           <ExternalLink size={11} className="flex-shrink-0" />
         </a>
       </div>

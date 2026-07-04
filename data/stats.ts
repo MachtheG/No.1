@@ -9,7 +9,7 @@ export interface QuickStat {
 export const quickStats: QuickStat[] = [
   {
     id: "sha",
-    value: 15.6,
+    value: 13.6,
     suffix: "M",
     label: "Kenyans Registered",
     sublabel: "Social Health Authority (SHA)",

@@ -1,8 +1,12 @@
+"use client";
+
 import { Container } from "@/components/ui/container";
 import { AnimatedCounter } from "@/components/ui/animated-counter";
 import { quickStats } from "@/data/stats";
+import { useT } from "@/lib/i18n";
 
 export function QuickStatsBar() {
+  const { t } = useT();
   return (
     <Container className="pb-10">
       <div className="glass-panel grid grid-cols-2 gap-px overflow-hidden rounded-2xl lg:grid-cols-4">
@@ -21,8 +25,8 @@ export function QuickStatsBar() {
               />
               <span className="text-party-gold">{stat.suffix}</span>
             </div>
-            <p className="text-sm font-medium text-black/80">{stat.label}</p>
-            <p className="text-xs text-black/40">{stat.sublabel}</p>
+            <p className="text-sm font-medium text-black/80">{t(stat.label)}</p>
+            <p className="text-xs text-black/40">{t(stat.sublabel)}</p>
           </div>
         ))}
       </div>

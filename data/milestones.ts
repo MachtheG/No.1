@@ -9,6 +9,7 @@ export interface Milestone {
   metric: { value: string; label: string };
   source: { title: string; url: string; type: "article" | "video" };
   youtubeId?: string;
+  image?: string;
 }
 
 export const pillarMeta: Record<
@@ -58,6 +59,7 @@ export const milestones: Milestone[] = [
       url: "https://www.the-star.co.ke/news/2025-11-11-ruto-hustler-fund-has-disbursed-sh80-billion-to-boost-financial-inclusion",
       type: "article",
     },
+    image: "/images/hustlerfund.png",
   },
   {
     id: "fertilizer-subsidy",
@@ -73,6 +75,7 @@ export const milestones: Milestone[] = [
       url: "https://citizen.digital/article/two-years-of-bottom-up-what-has-rutos-economic-agenda-for-kenya-achieved-n349574",
       type: "article",
     },
+    image: "/images/2 years bottom up.webp",
   },
   {
     id: "sha-launch",
@@ -87,6 +90,7 @@ export const milestones: Milestone[] = [
       url: "https://www.health.go.ke/kenya-officially-launch-social-health-authority-october-1-2024",
       type: "article",
     },
+    image: "/images/SHA Launch.jpeg",
   },
   {
     id: "sha-cancer-cover",
@@ -117,6 +121,7 @@ export const milestones: Milestone[] = [
       url: "https://nation.africa/kenya/news/success-hurdles-in-ruto-affordable-housing-dream-5250536",
       type: "article",
     },
+    image: "/images/Affordable housing.jpeg",
   },
   {
     id: "makasembo-handover",
@@ -131,6 +136,7 @@ export const milestones: Milestone[] = [
       url: "https://www.the-star.co.ke/news/2025-05-29-ruto-raila-to-commission-kisumu-housing-project",
       type: "article",
     },
+    image: "/images/LAPFUND.jpeg",
   },
   {
     id: "un-food-systems",
@@ -160,5 +166,6 @@ export const milestones: Milestone[] = [
       url: "https://www.iea.org/news/kenya-norway-us-and-iea-to-hold-2nd-major-summit-on-clean-cooking-in-africa",
       type: "article",
     },
+    image: "/images/IEA Summit.avif",
   },
 ];

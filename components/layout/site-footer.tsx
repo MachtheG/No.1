@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
 import { navGroups } from "@/data/nav";
+import { useT } from "@/lib/i18n";
 
 const SOCIALS = [
   { icon: Twitter, href: "https://twitter.com/WilliamsRuto", label: "X (Twitter)" },
@@ -13,6 +16,7 @@ const SOCIALS = [
 ];
 
 export function SiteFooter() {
+  const { t } = useT();
   return (
     <footer className="relative border-t border-white/10 bg-black">
       <Container className="py-20">
@@ -32,8 +36,9 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/50">
-              The official record of transformation — a bottom-up economic
-              model turning policy into dignity for every Kenyan household.
+              {t(
+                "The official record of transformation — a bottom-up economic model turning policy into dignity for every Kenyan household."
+              )}
             </p>
             <div className="mt-8 flex gap-3">
               {SOCIALS.map(({ icon: Icon, href, label }) => (
@@ -53,7 +58,7 @@ export function SiteFooter() {
 
           {navGroups.map((group) => (
             <div key={group.label}>
-              <h3 className="kicker mb-6 text-party-yellow">{group.label}</h3>
+              <h3 className="kicker mb-6 text-party-yellow">{t(group.label)}</h3>
               <ul className="space-y-3.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
@@ -61,7 +66,7 @@ export function SiteFooter() {
                       href={link.href}
                       className="text-sm text-white/60 transition-colors hover:text-white"
                     >
-                      {link.label}
+                      {t(link.label)}
                     </Link>
                   </li>
                 ))}
@@ -72,8 +77,7 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/40 sm:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} United Democratic Alliance (UDA)
-            &amp; the Kenya Kwanza Movement. All rights reserved.
+            &copy; {new Date().getFullYear()} {t("United Democratic Alliance (UDA) & the Kenya Kwanza Movement. All rights reserved.")}
           </p>
           <p className="font-mono uppercase tracking-widest">
             Kazi ni Kazi

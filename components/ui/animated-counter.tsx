@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { animate, useInView, useMotionValue } from "framer-motion";
 
 export function AnimatedCounter({
   value,
@@ -14,23 +14,25 @@ export function AnimatedCounter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { damping: 24, stiffness: 60 });
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   useEffect(() => {
-    if (isInView) {
-      motionValue.set(value);
-    }
+    if (!isInView) return;
+    const controls = animate(motionValue, value, {
+      duration: 1.8,
+      ease: [0.16, 1, 0.3, 1],
+    });
+    return () => controls.stop();
   }, [isInView, motionValue, value]);
 
   useEffect(
     () =>
-      spring.on("change", (latest) => {
+      motionValue.on("change", (latest) => {
         if (ref.current) {
           ref.current.textContent = latest.toFixed(decimals);
         }
       }),
-    [spring, decimals]
+    [motionValue, decimals]
   );
 
   return (

@@ -6,6 +6,7 @@ import { MessageCircle, X, Send } from "lucide-react";
 
 import { answerFor } from "@/data/assistant-kb";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n";
 
 interface Msg {
   from: "user" | "bot";
@@ -20,6 +21,7 @@ const GREETING: Msg = {
 const SUGGESTIONS = ["What is the Hustler Fund?", "When is the election?", "How do I donate?"];
 
 export function CampaignAssistant() {
+  const { t } = useT();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
@@ -43,7 +45,9 @@ export function CampaignAssistant() {
     <>
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? "Close assistant" : "Open campaign assistant"}
+        aria-label={
+          open ? t("Close assistant") : t("Open campaign assistant")
+        }
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-party-yellow text-black shadow-lg transition-transform hover:scale-105"
       >
         {open ? <X size={22} /> : <MessageCircle size={22} />}
@@ -64,10 +68,10 @@ export function CampaignAssistant() {
               </span>
               <div>
                 <p className="text-sm font-semibold text-black">
-                  Campaign Assistant
+                  {t("Campaign Assistant")}
                 </p>
                 <p className="text-[11px] text-black/45">
-                  Answers from campaign content
+                  {t("Answers from campaign content")}
                 </p>
               </div>
             </div>
@@ -86,7 +90,7 @@ export function CampaignAssistant() {
                       : "bg-black/[0.04] text-black/80"
                   )}
                 >
-                  {m.text}
+                  {m.from === "bot" ? t(m.text) : m.text}
                 </div>
               ))}
 
@@ -98,7 +102,7 @@ export function CampaignAssistant() {
                       onClick={() => send(s)}
                       className="rounded-full border border-black/10 px-3 py-1.5 text-xs text-black/60 transition-colors hover:border-party-yellow/60 hover:text-black"
                     >
-                      {s}
+                      {t(s)}
                     </button>
                   ))}
                 </div>
@@ -115,7 +119,7 @@ export function CampaignAssistant() {
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask a question…"
+                placeholder={t("Ask a question…")}
                 className="flex-1 rounded-full border border-black/10 bg-white px-4 py-2.5 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
               />
               <button

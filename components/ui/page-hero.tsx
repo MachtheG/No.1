@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import { Container } from "@/components/ui/container";
 import { Kicker } from "@/components/ui/badge";
+import { useT } from "@/lib/i18n";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -18,6 +19,7 @@ export function PageHero({
   accent?: string;
   description: string;
 }) {
+  const { t } = useT();
   return (
     <section className="relative overflow-hidden border-b border-black/10 bg-white pb-12 pt-28 sm:pb-16 sm:pt-32">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_100%_60%_at_50%_-10%,rgba(255,215,0,0.10),transparent_60%)]" />
@@ -30,13 +32,13 @@ export function PageHero({
         >
           <Kicker>{kicker}</Kicker>
           <h1 className="mt-6 max-w-4xl text-balance font-display text-4xl font-medium leading-[1.05] tracking-tighter text-black sm:text-5xl lg:text-6xl">
-            {title}
+            {t(title)}
             {accent && (
-              <span className="italic text-forest-600"> {accent}</span>
+              <span className="italic text-forest-600"> {t(accent)}</span>
             )}
           </h1>
           <p className="mt-5 max-w-xl text-balance text-base leading-relaxed text-black/55">
-            {description}
+            {t(description)}
           </p>
         </motion.div>
       </Container>
