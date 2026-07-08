@@ -29,20 +29,23 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-black"
     >
-      {/* Background: campaign banner, with a light scrim so the copy stays legible */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 scale-110">
+      {/* Background: campaign banner, with a scrim so the copy stays legible */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 scale-105 sm:scale-110">
         <Image
           src="/images/banner3.jpg"
           alt="President William Ruto campaign banner"
           fill
           priority
+          quality={90}
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[center_20%] sm:object-center"
         />
-        {/* Darken the left (behind the headline) and the bottom (behind the stats),
-            leaving the right of the banner clearly visible. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
+        {/* On mobile the headline sits over the subject, so darken the whole frame a
+            little and lean on the bottom gradient. On larger screens, darken the left
+            (behind the headline) and keep the right of the banner clearly visible. */}
+        <div className="absolute inset-0 bg-black/40 sm:bg-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20 sm:via-black/40 sm:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent sm:via-black/10" />
       </motion.div>
 
       <Container className="relative z-10 flex flex-1 flex-col justify-center pt-32 pb-14 sm:pt-36">

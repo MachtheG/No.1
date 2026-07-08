@@ -12,6 +12,11 @@ export function YoutubeEmbed({
   title: string;
 }) {
   const [playing, setPlaying] = useState(false);
+  // Prefer the 1280×720 native-16:9 thumbnail for a crisp poster; fall back to
+  // the always-available 4:3 hqdefault if a video has no max-res thumbnail.
+  const [thumb, setThumb] = useState(
+    `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`
+  );
 
   if (playing) {
     return (
@@ -34,10 +39,14 @@ export function YoutubeEmbed({
       className="group relative aspect-video w-full overflow-hidden rounded-xl bg-onyx-800 text-left"
     >
       <Image
-        src={`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`}
+        src={thumb}
         alt={title}
         fill
         sizes="(min-width: 1024px) 33vw, 100vw"
+        quality={90}
+        onError={() =>
+          setThumb(`https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`)
+        }
         className="object-cover transition-transform duration-500 group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />

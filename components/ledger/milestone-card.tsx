@@ -40,7 +40,8 @@ export function MilestoneCard({
             alt={milestone.title}
             fill
             sizes="(min-width: 1024px) 33vw, 100vw"
-            className="object-cover"
+            quality={90}
+            className="object-cover object-center"
           />
           <span className="absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 font-mono text-[11px] uppercase tracking-widest text-white">
             {milestone.year}

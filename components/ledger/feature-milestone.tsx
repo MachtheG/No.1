@@ -32,7 +32,12 @@ export function FeatureMilestone({
       className="grid overflow-hidden rounded-3xl border-2 border-black/10 bg-black lg:grid-cols-2"
     >
       {/* Media */}
-      <div className={cn("relative min-h-[280px]", flip && "lg:order-2")}>
+      <div
+        className={cn(
+          "relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:min-h-[320px]",
+          flip && "lg:order-2"
+        )}
+      >
         {milestone.youtubeId ? (
           <div className="absolute inset-0">
             <YoutubeEmbed
@@ -46,7 +51,8 @@ export function FeatureMilestone({
             alt={milestone.title}
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
+            quality={90}
+            className="object-cover object-center"
           />
         ) : (
           <div className="absolute inset-0 bg-onyx-800" />
@@ -54,19 +60,19 @@ export function FeatureMilestone({
       </div>
 
       {/* Copy */}
-      <div className="flex flex-col justify-center gap-4 p-8 lg:p-12">
+      <div className="flex min-w-0 flex-col justify-center gap-4 p-6 sm:p-8 lg:p-12">
         <PillarBadge color={color}>{meta.label}</PillarBadge>
 
-        <div>
-          <p className="font-display text-6xl font-bold leading-none text-party-yellow lg:text-7xl">
+        <div className="min-w-0">
+          <p className="font-display text-5xl font-bold leading-none text-party-yellow sm:text-6xl lg:text-7xl">
             {milestone.metric.value}
           </p>
-          <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-white/60">
+          <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/60 sm:text-sm">
             {t(milestone.metric.label)}
           </p>
         </div>
 
-        <h3 className="font-display text-2xl font-semibold leading-tight text-white lg:text-3xl">
+        <h3 className="text-balance font-display text-2xl font-semibold leading-tight text-white lg:text-3xl">
           {t(milestone.title)}
         </h3>
         <p className="max-w-md text-sm leading-relaxed text-white/60">
@@ -77,15 +83,17 @@ export function FeatureMilestone({
           href={milestone.source.url}
           target="_blank"
           rel="noreferrer"
-          className="mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-party-yellow/40 bg-party-yellow/10 px-4 py-2 text-xs font-semibold text-party-yellow transition-colors hover:bg-party-yellow/20"
+          className="mt-2 inline-flex w-full max-w-full items-center gap-2 rounded-full border border-party-yellow/40 bg-party-yellow/10 px-4 py-2 text-xs font-semibold text-party-yellow transition-colors hover:bg-party-yellow/20 sm:w-fit"
         >
-          <BadgeCheck size={15} />
-          {t("Verified")}
-          {milestone.source.type === "video" && <PlayCircle size={13} />}
-          <span className="max-w-[16rem] truncate text-party-yellow/80">
+          <BadgeCheck size={15} className="flex-shrink-0" />
+          <span className="flex-shrink-0">{t("Verified")}</span>
+          {milestone.source.type === "video" && (
+            <PlayCircle size={13} className="flex-shrink-0" />
+          )}
+          <span className="min-w-0 flex-1 truncate text-party-yellow/80 sm:max-w-[16rem] sm:flex-none">
             {milestone.source.title}
           </span>
-          <ExternalLink size={12} />
+          <ExternalLink size={12} className="flex-shrink-0" />
         </a>
       </div>
     </motion.article>
