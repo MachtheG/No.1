@@ -13,7 +13,7 @@ export function LegacyContent() {
   return (
     <>
       <PageHero
-        kicker="My Legacy"
+        kicker="Kenya on the World Stage"
         title="A voice at every"
         accent="global table."
         description="From the UN General Assembly to the G20 roundtable — Kenya's stature on the world stage, chronicled in image and word."

@@ -31,16 +31,16 @@ const config: Config = {
           600: "#CACAC6",
         },
         uda: {
-          50: "#FFFBEA",
-          100: "#FFF3C4",
-          200: "#FCE588",
-          300: "#FADB5F",
-          400: "#F7C948",
-          500: "#FFD700",
-          600: "#E0B800",
-          700: "#B38F00",
-          800: "#8A6D00",
-          900: "#6B5300",
+          50: "#FFF9E5",
+          100: "#FFF0BF",
+          200: "#FFE485",
+          300: "#FFD84A",
+          400: "#FFCE1F",
+          500: "#FFC700", // UDA brand yellow
+          600: "#E0AE00",
+          700: "#B38A00",
+          800: "#8A6900",
+          900: "#6B5200",
         },
         forest: {
           50: "#E6F5E6",
@@ -55,11 +55,11 @@ const config: Config = {
           900: "#002900",
         },
         party: {
-          yellow: "#FFD700",
-          // party-gold: a readable-on-white derivative of party-yellow for
-          // TEXT use only. Pure #FFD700 text on white fails WCAG contrast —
-          // buttons/badges/borders still use the exact yellow hex.
-          gold: "#8A6D00",
+          yellow: "#FFC700", // UDA brand yellow
+          // party-gold: a readable-on-white derivative of the brand yellow for
+          // TEXT use only. Pure #FFC700 text on white fails WCAG contrast —
+          // buttons/badges/fills still use the exact yellow hex.
+          gold: "#8A6900",
           green: "#008000",
           black: "#000000",
           white: "#FFFFFF",

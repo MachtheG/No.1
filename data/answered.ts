@@ -4,6 +4,8 @@ export interface AnsweredQuestion {
   asker: string; // display name or "Anonymous"
   county: string;
   answer: string;
+  /** Optional video answer from the official channel. */
+  youtubeId?: string;
 }
 
 /**
@@ -26,6 +28,7 @@ export const answeredQuestions: AnsweredQuestion[] = [
     county: "Machakos",
     answer:
       "The fund is designed to build credit history and savings rather than punish. Staying engaged and saving improves your limit over time; the goal is graduation into larger facilities, not penalty.",
+    youtubeId: "Ydv0P1EJBZ0",
   },
   {
     id: "q-housing-apply",

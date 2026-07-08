@@ -17,7 +17,7 @@ export function LegacySection({
       {showHeading && (
         <Container>
           <div className="max-w-2xl">
-            <Kicker>The Ego &amp; Legacy Vault</Kicker>
+            <Kicker>Kenya on the World Stage</Kicker>
             <h2 className="mt-6 text-balance font-display text-4xl font-medium leading-[1.05] tracking-tighter text-black sm:text-5xl lg:text-6xl">
               {t("A voice at every")}{" "}
               <span className="italic text-party-gold">

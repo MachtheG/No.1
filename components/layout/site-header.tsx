@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { navGroups } from "@/data/nav";
+import { primaryNav, navGroups } from "@/data/nav";
+import { CAMPAIGN } from "@/data/campaign";
 import { cn } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
 
@@ -40,7 +41,6 @@ export function SiteHeader() {
   const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -51,15 +51,16 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-white">
+      <div className="h-1 w-full bg-party-yellow" />
       <div
         className={cn(
           "border-b transition-shadow duration-300",
           scrolled ? "border-black/10 shadow-sm" : "border-black/10"
         )}
       >
-        <div className="container mx-auto flex h-20 items-center justify-between px-6 lg:px-10">
+        <div className="container mx-auto flex h-[68px] items-center justify-between px-6 lg:px-10">
           <Link href="/" className="group flex items-center gap-3">
-            <span className="relative h-11 w-11 flex-shrink-0">
+            <span className="relative h-10 w-10 flex-shrink-0">
               <Image
                 src="/images/coat-of-arms.svg"
                 alt="Coat of Arms of the Republic of Kenya"
@@ -69,84 +70,39 @@ export function SiteHeader() {
               />
             </span>
             <span className="flex flex-col leading-tight">
-              <span className="font-display text-base font-semibold text-black">
+              <span className="font-display text-sm font-semibold text-black sm:text-base">
                 H.E. Hon. Dr. William Ruto
               </span>
-              <span className="text-[11px] uppercase tracking-widest text-black/50">
-                {t("President of Kenya")}
+              <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-party-gold">
+                {CAMPAIGN.slogan}
               </span>
             </span>
           </Link>
 
-          <nav
-            className="hidden items-center gap-1 md:flex"
-            onMouseLeave={() => setOpenGroup(null)}
-          >
-            {navGroups.map((group) => (
-              <div
-                key={group.label}
-                className="relative"
-                onMouseEnter={() => setOpenGroup(group.label)}
+          <nav className="hidden items-center gap-1 lg:flex">
+            {primaryNav.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-full px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-black/70 transition-colors hover:bg-party-yellow/15 hover:text-black"
               >
-                <button
-                  className={cn(
-                    "flex items-center gap-1 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-widest transition-colors",
-                    openGroup === group.label
-                      ? "text-party-gold"
-                      : "text-black/65 hover:text-black"
-                  )}
-                >
-                  {t(group.label)}
-                  <ChevronDown
-                    size={13}
-                    className={cn(
-                      "transition-transform",
-                      openGroup === group.label && "rotate-180"
-                    )}
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {openGroup === group.label && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute left-1/2 top-full w-72 -translate-x-1/2 pt-3"
-                    >
-                      <div className="rounded-2xl border border-black/10 bg-white p-2 shadow-lg">
-                        {group.links.map((link) => (
-                          <Link
-                            key={link.href}
-                            href={link.href}
-                            className="block rounded-xl px-4 py-3 transition-colors hover:bg-black/[0.04]"
-                          >
-                            <p className="text-sm font-medium text-black">
-                              {t(link.label)}
-                            </p>
-                            <p className="mt-0.5 text-xs text-black/45">
-                              {link.description}
-                            </p>
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {t(link.label)}
+              </Link>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <LanguageToggle />
+            <Button size="sm" variant="outline" asChild>
+              <Link href="/why-ruto#pledge">{t("Join Us")}</Link>
+            </Button>
             <Button size="sm" asChild>
-              <Link href="/why-ruto#pledge">{t("Join the Movement")}</Link>
+              <Link href="/donate">{t("Donate")}</Link>
             </Button>
           </div>
 
           <button
-            className="text-black md:hidden"
+            className="text-black lg:hidden"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -162,7 +118,7 @@ export function SiteHeader() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-b border-black/10 bg-white md:hidden"
+            className="overflow-hidden border-b border-black/10 bg-white lg:hidden"
           >
             <div className="flex max-h-[75vh] flex-col gap-6 overflow-y-auto px-6 py-6">
               <div className="flex items-center justify-between">
@@ -186,11 +142,18 @@ export function SiteHeader() {
                   </div>
                 </div>
               ))}
-              <Button className="w-full" asChild>
-                <Link href="/why-ruto#pledge" onClick={() => setMenuOpen(false)}>
-                  {t("Join the Movement")}
-                </Link>
-              </Button>
+              <div className="flex gap-3">
+                <Button className="flex-1" variant="outline" asChild>
+                  <Link href="/why-ruto#pledge" onClick={() => setMenuOpen(false)}>
+                    {t("Join Us")}
+                  </Link>
+                </Button>
+                <Button className="flex-1" asChild>
+                  <Link href="/donate" onClick={() => setMenuOpen(false)}>
+                    {t("Donate")}
+                  </Link>
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

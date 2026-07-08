@@ -1,9 +1,10 @@
 "use client";
 
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Download } from "lucide-react";
 
 import { PageHero } from "@/components/ui/page-hero";
 import { Container } from "@/components/ui/container";
+import { Button } from "@/components/ui/button";
 import { manifestoPillars, manifestoSource } from "@/data/manifesto";
 import { useT } from "@/lib/i18n";
 
@@ -17,6 +18,23 @@ export function ManifestoContent() {
         accent="Economic Transformation Agenda."
         description="Five pillars, one philosophy: channel scarce resources to the base of the economic pyramid first. This is my plan."
       />
+
+      <section className="border-b border-black/10 bg-onyx-900 py-6">
+        <Container className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <p className="text-sm text-black/70">
+            {t("Read the full plan, or take it with you.")}
+          </p>
+          <Button asChild>
+            <a
+              href="/downloads/ruto-2027-manifesto.pdf"
+              download="Ruto-2027-Manifesto.pdf"
+            >
+              <Download size={16} />
+              {t("Download the Manifesto (PDF)")}
+            </a>
+          </Button>
+        </Container>
+      </section>
 
       <section className="border-t border-black/10 bg-white py-24 lg:py-32">
         <Container>

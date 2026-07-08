@@ -6,6 +6,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
 import { navGroups } from "@/data/nav";
+import { CAMPAIGN } from "@/data/campaign";
 import { useT } from "@/lib/i18n";
 
 const SOCIALS = [
@@ -18,7 +19,7 @@ const SOCIALS = [
 export function SiteFooter() {
   const { t } = useT();
   return (
-    <footer className="relative border-t border-white/10 bg-black">
+    <footer className="relative border-t-4 border-party-yellow bg-black">
       <Container className="py-20">
         <div className="grid gap-16 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
@@ -31,8 +32,13 @@ export function SiteFooter() {
                   className="object-contain p-1.5"
                 />
               </span>
-              <span className="font-display text-base font-semibold text-white">
-                H.E. Hon. Dr. William Ruto
+              <span className="flex flex-col leading-tight">
+                <span className="font-display text-base font-semibold text-white">
+                  H.E. Hon. Dr. William Ruto
+                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-party-yellow">
+                  {CAMPAIGN.slogan} &middot; {CAMPAIGN.year}
+                </span>
               </span>
             </Link>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/50">

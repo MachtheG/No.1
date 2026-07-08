@@ -677,6 +677,125 @@ const DICT: Record<string, string> = {
     "Aliongeza mara mbili mavuno ya mahindi baada ya kupata pembejeo za ruzuku",
   "First-time homeowner through the Affordable Housing Programme":
     "Mmiliki wa nyumba kwa mara ya kwanza kupitia Mpango wa Nyumba za Bei Nafuu",
+
+  // ── 2027 rebuild: hero, slogan, nav ──────────────────────────────────
+  "Promises made.": "Ahadi zimetolewa.",
+  "Promises kept.": "Ahadi zimetimizwa.",
+  "Re-elect President William Ruto — 2027.":
+    "Mchague tena Rais William Ruto — 2027.",
+  "Let the Work Continue": "Kazi Iendelee",
+  "See the record": "Tazama rekodi",
+  "supporters and counting": "wafuasi na wanaongezeka",
+  "Second Term Plan": "Mpango wa Muhula wa Pili",
+  Manifesto: "Ilani",
+  "My Journey": "Safari Yangu",
+  Elections: "Uchaguzi",
+  "Join Us": "Jiunge Nasi",
+  Explore: "Chunguza",
+  "Everything you need,": "Kila unachohitaji,",
+  "in one place.": "mahali pamoja.",
+  "Kenya on the World Stage": "Kenya Katika Ulingo wa Dunia",
+  Verified: "Imethibitishwa",
+
+  // Nav descriptions (primary)
+  "Every delivery, with a source you can check":
+    "Kila utekelezaji, na chanzo unachoweza kuthibitisha",
+  "The Bottom-Up Economic Transformation Agenda":
+    "Ajenda ya Mageuzi ya Kiuchumi ya Chini-Juu",
+  "2027 countdown & the 2022 result":
+    "Kihesabu cha 2027 na matokeo ya 2022",
+  "Ask any question about the plan — with sources":
+    "Uliza swali lolote kuhusu mpango — na vyanzo",
+  "Submit a question and get a real answer":
+    "Wasilisha swali na upate jibu halisi",
+
+  // ── Manifesto download ───────────────────────────────────────────────
+  "Read the full plan, or take it with you.":
+    "Soma mpango kamili, au uchukue nawe.",
+  "Download the Manifesto (PDF)": "Pakua Ilani (PDF)",
+
+  // ── Persona selector ─────────────────────────────────────────────────
+  "For a": "Kwa",
+
+  // ── Pledge (upgraded) ────────────────────────────────────────────────
+  "Karibu! You're in.": "Karibu! Umeingia.",
+  "You'll get a message when the movement comes to your county.":
+    "Utapata ujumbe harakati zitakapofika kaunti yako.",
+  "Confirm on WhatsApp to get updates first.":
+    "Thibitisha kwenye WhatsApp kupata taarifa kwanza.",
+  "Confirm on WhatsApp": "Thibitisha kwenye WhatsApp",
+  "Phone number (WhatsApp)": "Nambari ya simu (WhatsApp)",
+  "Free. Takes 10 seconds. No spam.":
+    "Bure. Inachukua sekunde 10. Hakuna barua taka.",
+
+  // ── Donate (M-Pesa STK flow) ─────────────────────────────────────────
+  "Safaricom number for the M-Pesa prompt":
+    "Nambari ya Safaricom kwa arifa ya M-Pesa",
+  "You'll get an M-Pesa prompt on this number to confirm with your PIN.":
+    "Utapata arifa ya M-Pesa kwenye nambari hii kuthibitisha kwa PIN yako.",
+  "Send M-Pesa prompt": "Tuma arifa ya M-Pesa",
+  "Check your phone": "Angalia simu yako",
+  "Confirming payment…": "Inathibitisha malipo…",
+  "An M-Pesa prompt has been sent to your phone. Enter your M-Pesa PIN to confirm your contribution.":
+    "Arifa ya M-Pesa imetumwa kwenye simu yako. Weka PIN yako ya M-Pesa kuthibitisha mchango wako.",
+  "Waiting for M-Pesa to confirm the transaction…":
+    "Inasubiri M-Pesa kuthibitisha muamala…",
+  "Do not close this window": "Usifunge dirisha hili",
+  "Make another contribution": "Fanya mchango mwingine",
+  "Transparent & compliant": "Uwazi na kufuata sheria",
+  "Contributions are recorded with the disclosures required under Kenyan campaign-finance law.":
+    "Michango hurekodiwa na ufichuzi unaohitajika chini ya sheria ya fedha za kampeni ya Kenya.",
+  "Every shilling counts": "Kila shilingi ina thamani",
+  "From printing to rallies to grassroots mobilisation — your support powers the ground game.":
+    "Kutoka uchapishaji hadi mikutano hadi uhamasishaji wa mashinani — msaada wako unaendesha kazi ya ardhini.",
+  "Instant receipt": "Risiti ya papo hapo",
+  "You receive a confirmation and receipt the moment your contribution is processed.":
+    "Unapokea uthibitisho na risiti wakati mchango wako unapochakatwa.",
+
+  // ── Ask console (/ask) ───────────────────────────────────────────────
+  "Ask anything.": "Uliza chochote.",
+  "Check the source.": "Thibitisha chanzo.",
+  "Ask about the plan…": "Uliza kuhusu mpango…",
+  "Ask any question about the manifesto or the record. Answers come only from published campaign content, with a source you can check.":
+    "Uliza swali lolote kuhusu ilani au rekodi. Majibu hutoka tu kwa maudhui ya kampeni yaliyochapishwa, na chanzo unachoweza kuthibitisha.",
+  "This assistant answers only from published campaign material and cites its source. It does not use open web knowledge.":
+    "Msaidizi huyu hujibu tu kutoka kwa nyenzo za kampeni zilizochapishwa na hutaja chanzo chake. Hautumii maarifa ya wavuti wazi.",
+  Send: "Tuma",
+  "How does SHA work?": "SHA inafanyaje kazi?",
+  "What is the housing plan?": "Mpango wa nyumba ni upi?",
+  "What are the manifesto pillars?": "Nguzo za ilani ni zipi?",
+  "When is the 2027 election?": "Uchaguzi wa 2027 ni lini?",
+
+  // ── Q&A town hall (/qa) ──────────────────────────────────────────────
+  "Your question.": "Swali lako.",
+  "A real answer.": "Jibu halisi.",
+  "Submit a Question": "Wasilisha Swali",
+  "Recently Answered": "Yaliyojibiwa Hivi Karibuni",
+  "No question is too small. High-volume topics shape the next town-hall answers.":
+    "Hakuna swali dogo sana. Mada zenye maswali mengi huunda majibu ya mkutano ujao.",
+  "Submit — anonymously if you wish": "Wasilisha — bila jina ukipenda",
+  "Every question goes into a moderation queue that filters spam and abuse before anything is published.":
+    "Kila swali huingia kwenye foleni ya uhakiki inayochuja barua taka na matusi kabla ya chochote kuchapishwa.",
+  "We answer in weekly batches": "Tunajibu kwa makundi ya kila wiki",
+  "The most-asked and most-important questions are selected and answered every week.":
+    "Maswali yanayoulizwa zaidi na muhimu zaidi huchaguliwa na kujibiwa kila wiki.",
+  "Real answers — often on video": "Majibu halisi — mara nyingi kwa video",
+  "Where it matters, you get a direct video response, not a press release.":
+    "Pale inapohitajika, unapata jibu la moja kwa moja la video, si taarifa kwa vyombo vya habari.",
+
+  // ── IEBC voter check ─────────────────────────────────────────────────
+  "IEBC Voter Check": "Ukaguzi wa Mpiga Kura wa IEBC",
+  "Are you ready to vote in": "Uko tayari kupiga kura",
+  "Confirm your registration status in seconds. Not registered yet? It only takes a few minutes at any IEBC centre.":
+    "Thibitisha hali yako ya usajili kwa sekunde. Bado hujajisajili? Inachukua dakika chache tu katika kituo chochote cha IEBC.",
+  "National ID number": "Nambari ya Kitambulisho",
+  "Check my registration": "Kagua usajili wangu",
+  "Checking…": "Inakagua…",
+  "You appear to be registered.": "Inaonekana umejisajili.",
+  "Your county": "Kaunti yako",
+  "Demonstration result. Always confirm your details on the official IEBC portal before election day.":
+    "Matokeo ya mfano. Daima thibitisha maelezo yako kwenye tovuti rasmi ya IEBC kabla ya siku ya uchaguzi.",
+  "Check another": "Kagua mwingine",
 };
 
 interface Ctx {

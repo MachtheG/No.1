@@ -21,7 +21,7 @@ const GREETING: Msg = {
 const SUGGESTIONS = ["What is the Hustler Fund?", "When is the election?", "How do I donate?"];
 
 export function CampaignAssistant() {
-  const { t } = useT();
+  const { t, lang } = useT();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
@@ -37,7 +37,11 @@ export function CampaignAssistant() {
     setMessages((m) => [...m, { from: "user", text: q }]);
     setInput("");
     window.setTimeout(() => {
-      setMessages((m) => [...m, { from: "bot", text: answerFor(q) }]);
+      const res = answerFor(q, lang);
+      const botText = res.source
+        ? `${res.answer}\n\n${t("Source:")} ${res.source.label}`
+        : res.answer;
+      setMessages((m) => [...m, { from: "bot", text: botText }]);
     }, 350);
   }
 

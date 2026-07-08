@@ -2,7 +2,13 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Smartphone, CreditCard, Wallet } from "lucide-react";
+import {
+  CheckCircle2,
+  Smartphone,
+  CreditCard,
+  Wallet,
+  Loader2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,22 +21,63 @@ const METHODS = [
   { id: "paypal", label: "PayPal", icon: Wallet },
 ] as const;
 
+type Status = "idle" | "stk" | "processing" | "success";
+
 export function DonateForm() {
   const { t } = useT();
   const [amount, setAmount] = useState<number>(500);
   const [custom, setCustom] = useState("");
   const [method, setMethod] = useState<string>("mpesa");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">(
-    "idle"
-  );
+  const [phone, setPhone] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
 
   const effectiveAmount = custom ? Number(custom) || 0 : amount;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("submitting");
-    // Payment processing is a later technical phase — this is a UI scaffold only.
-    window.setTimeout(() => setStatus("success"), 1000);
+    // Payment processing is a later technical phase — this is a UI scaffold.
+    if (method === "mpesa") {
+      // Simulate a Safaricom Daraja STK push to the handset.
+      setStatus("stk");
+      window.setTimeout(() => setStatus("processing"), 3200);
+      window.setTimeout(() => setStatus("success"), 5000);
+    } else {
+      setStatus("processing");
+      window.setTimeout(() => setStatus("success"), 1200);
+    }
+  }
+
+  // --- M-Pesa STK push waiting screen ---
+  if (status === "stk" || (status === "processing" && method === "mpesa")) {
+    return (
+      <div className="rounded-3xl border-2 border-party-yellow/40 bg-onyx-900 p-8 text-center sm:p-12">
+        <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest-500/10 text-forest-600">
+          <Smartphone size={26} />
+        </span>
+        <h3 className="mt-5 font-display text-2xl font-semibold text-black">
+          {status === "stk"
+            ? t("Check your phone")
+            : t("Confirming payment…")}
+        </h3>
+        <p className="mx-auto mt-2 max-w-sm text-sm text-black/60">
+          {status === "stk"
+            ? t(
+                "An M-Pesa prompt has been sent to your phone. Enter your M-Pesa PIN to confirm your contribution."
+              )
+            : t("Waiting for M-Pesa to confirm the transaction…")}
+        </p>
+        <div className="mx-auto mt-6 inline-flex items-center gap-2 rounded-full bg-black/[0.04] px-4 py-2 text-sm font-semibold text-black">
+          <span className="text-black/50">{phone || "07XX XXX XXX"}</span>
+          <span className="text-party-gold">
+            KES {effectiveAmount.toLocaleString()}
+          </span>
+        </div>
+        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-black/45">
+          <Loader2 size={14} className="animate-spin" />
+          {t("Do not close this window")}
+        </div>
+      </div>
+    );
   }
 
   if (status === "success") {
@@ -38,10 +85,10 @@ export function DonateForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="rounded-3xl border border-forest-500/30 bg-forest-500/[0.06] p-8 text-center sm:p-12"
+        className="rounded-3xl border-2 border-forest-500/30 bg-forest-500/[0.06] p-8 text-center sm:p-12"
       >
         <CheckCircle2 className="mx-auto text-forest-600" size={44} />
-        <h3 className="mt-4 font-display text-2xl font-medium text-black">
+        <h3 className="mt-4 font-display text-2xl font-semibold text-black">
           {t("Thank you for your support.")}
         </h3>
         <p className="mx-auto mt-2 max-w-sm text-sm text-black/55">
@@ -52,12 +99,8 @@ export function DonateForm() {
           {t("via")} {t(METHODS.find((m) => m.id === method)?.label ?? "")}.{" "}
           {t("No payment has been processed.")}
         </p>
-        <Button
-          variant="outline"
-          className="mt-6"
-          onClick={() => setStatus("idle")}
-        >
-          {t("Make another pledge")}
+        <Button variant="outline" className="mt-6" onClick={() => setStatus("idle")}>
+          {t("Make another contribution")}
         </Button>
       </motion.div>
     );
@@ -66,7 +109,7 @@ export function DonateForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-black/10 bg-black/[0.02] p-6 sm:p-8"
+      className="rounded-3xl border-2 border-black/10 bg-white p-6 sm:p-8"
     >
       {/* Amount */}
       <fieldset>
@@ -83,9 +126,9 @@ export function DonateForm() {
                 setCustom("");
               }}
               className={cn(
-                "rounded-xl border py-3 text-sm font-semibold transition-colors",
+                "rounded-xl border-2 py-3 text-sm font-bold transition-colors",
                 amount === a && !custom
-                  ? "border-party-yellow bg-party-yellow/10 text-black"
+                  ? "border-party-yellow bg-party-yellow/15 text-black"
                   : "border-black/10 text-black/60 hover:border-black/25"
               )}
             >
@@ -99,7 +142,7 @@ export function DonateForm() {
           value={custom}
           onChange={(e) => setCustom(e.target.value)}
           placeholder={t("Or enter a custom amount")}
-          className="mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+          className="mt-2 w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
         />
       </fieldset>
 
@@ -115,18 +158,38 @@ export function DonateForm() {
               type="button"
               onClick={() => setMethod(m.id)}
               className={cn(
-                "flex flex-col items-center gap-2 rounded-xl border py-4 text-xs font-medium transition-colors",
+                "flex flex-col items-center gap-2 rounded-xl border-2 py-4 text-xs font-semibold transition-colors",
                 method === m.id
-                  ? "border-party-yellow bg-party-yellow/10 text-black"
+                  ? "border-party-yellow bg-party-yellow/15 text-black"
                   : "border-black/10 text-black/60 hover:border-black/25"
               )}
             >
-              <m.icon size={20} strokeWidth={1.6} />
+              <m.icon size={20} strokeWidth={1.8} />
               {m.label}
             </button>
           ))}
         </div>
       </fieldset>
+
+      {/* M-Pesa phone (Daraja STK push) */}
+      {method === "mpesa" && (
+        <fieldset className="mt-6">
+          <legend className="text-xs uppercase tracking-widest text-black/40">
+            {t("Safaricom number for the M-Pesa prompt")}
+          </legend>
+          <input
+            required
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="0712 345 678"
+            className="mt-3 w-full rounded-xl border-2 border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
+          />
+          <p className="mt-2 text-xs text-black/40">
+            {t("You'll get an M-Pesa prompt on this number to confirm with your PIN.")}
+          </p>
+        </fieldset>
+      )}
 
       {/* Donor info + compliance disclosure */}
       <fieldset className="mt-6">
@@ -137,21 +200,16 @@ export function DonateForm() {
           <input
             required
             placeholder={t("Full name")}
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
-          />
-          <input
-            required
-            placeholder={t("Phone number")}
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
           />
           <input
             required
             placeholder={t("National ID / Passport no.")}
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
           />
           <input
             placeholder={t("County of residence")}
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow/60 focus:outline-none"
+            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none sm:col-span-2"
           />
         </div>
         <p className="mt-3 text-xs leading-relaxed text-black/40">
@@ -165,10 +223,10 @@ export function DonateForm() {
         type="submit"
         size="lg"
         className="mt-6 w-full"
-        disabled={status === "submitting" || effectiveAmount <= 0}
+        disabled={effectiveAmount <= 0}
       >
-        {status === "submitting"
-          ? t("Processing…")
+        {method === "mpesa"
+          ? `${t("Send M-Pesa prompt")} · KES ${effectiveAmount.toLocaleString()}`
           : `${t("Donate KES")} ${effectiveAmount.toLocaleString()}`}
       </Button>
     </form>

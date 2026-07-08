@@ -10,6 +10,8 @@ export interface Milestone {
   source: { title: string; url: string; type: "article" | "video" };
   youtubeId?: string;
   image?: string;
+  /** Landmark achievements render as large, full-bleed feature blocks. */
+  featured?: boolean;
 }
 
 export const pillarMeta: Record<
@@ -60,6 +62,7 @@ export const milestones: Milestone[] = [
       type: "article",
     },
     image: "/images/hustlerfund.png",
+    featured: true,
   },
   {
     id: "fertilizer-subsidy",
@@ -91,6 +94,7 @@ export const milestones: Milestone[] = [
       type: "article",
     },
     image: "/images/SHA Launch.jpeg",
+    featured: true,
   },
   {
     id: "sha-cancer-cover",

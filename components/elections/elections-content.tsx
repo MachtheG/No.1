@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { Kicker } from "@/components/ui/badge";
 import { CountdownTimer } from "@/components/elections/countdown-timer";
 import { ElectionHeatmap } from "@/components/elections/election-heatmap";
+import { VoterCheck } from "@/components/elections/voter-check";
 import {
   nextElectionDate,
   nextElectionLabel,
@@ -35,6 +36,10 @@ export function ElectionsContent() {
                 "Election Day: Tuesday, 10 August 2027 — as confirmed by the Independent Electoral and Boundaries Commission (IEBC)."
               )}
             </p>
+          </div>
+
+          <div className="mt-8">
+            <VoterCheck />
           </div>
         </Container>
       </section>

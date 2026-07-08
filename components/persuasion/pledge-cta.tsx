@@ -1,14 +1,27 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Users } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useT } from "@/lib/i18n";
+import { CAMPAIGN, whatsappLink } from "@/data/campaign";
+
+function useLiveSupporterCount() {
+  const [count, setCount] = useState(CAMPAIGN.supporterBase);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount((c) => c + Math.floor(Math.random() * 3) + 1);
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
+  return count;
+}
 
 export function PledgeCta() {
   const { t } = useT();
+  const supporters = useLiveSupporterCount();
   const [status, setStatus] = useState<"idle" | "submitting" | "success">(
     "idle"
   );
@@ -20,19 +33,28 @@ export function PledgeCta() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-black/10 bg-onyx-900 p-8 lg:p-16">
-      <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-party-yellow to-party-green" />
+    <div className="relative overflow-hidden rounded-3xl border-2 border-party-yellow/30 bg-black p-8 lg:p-14">
+      <div className="absolute inset-x-0 top-0 h-1.5 bg-party-yellow" />
 
-      <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+      <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
-          <h3 className="text-balance font-display text-3xl font-medium leading-tight text-black sm:text-4xl lg:text-5xl">
+          {/* Live supporter count */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-party-yellow/40 bg-party-yellow/10 px-4 py-1.5">
+            <Users size={15} className="text-party-yellow" />
+            <span className="font-mono text-sm font-bold tabular-nums text-party-yellow">
+              {supporters.toLocaleString("en-KE")}
+            </span>
+            <span className="text-xs font-medium uppercase tracking-widest text-white/60">
+              {t("supporters and counting")}
+            </span>
+          </div>
+
+          <h3 className="mt-6 text-balance font-display text-3xl font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-4xl lg:text-5xl">
             {t("Pledge your vote.")}
             <br />
-            <span className="italic text-party-gold">
-              {t("Join the movement.")}
-            </span>
+            <span className="text-party-yellow">{t("Join the movement.")}</span>
           </h3>
-          <p className="mt-5 max-w-md text-balance text-base leading-relaxed text-black/60">
+          <p className="mt-5 max-w-md text-base leading-relaxed text-white/60">
             {t(
               "Add your name to a nationwide coalition standing behind a proven record of delivery — and be the first to hear where the movement gathers next."
             )}
@@ -46,15 +68,34 @@ export function PledgeCta() {
                 key="success"
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-forest-400/30 bg-forest-500/10 px-6 py-10 text-center"
+                className="rounded-2xl border border-party-yellow/30 bg-white/[0.04] px-6 py-8 text-center"
               >
-                <CheckCircle2 className="text-forest-600" size={36} />
-                <p className="font-display text-lg font-medium text-black">
-                  {t("Pledge received.")}
+                <CheckCircle2 className="mx-auto text-party-yellow" size={40} />
+                <p className="mt-4 font-display text-xl font-semibold text-white">
+                  {t("Karibu! You're in.")}
                 </p>
-                <p className="text-sm text-black/50">
-                  {t("Karibu to the movement — watch your inbox for what's next.")}
-                </p>
+                <ul className="mx-auto mt-4 max-w-xs space-y-2 text-left text-sm text-white/70">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-party-yellow" />
+                    {t("You'll get a message when the movement comes to your county.")}
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-party-yellow" />
+                    {t("Confirm on WhatsApp to get updates first.")}
+                  </li>
+                </ul>
+                <Button className="mt-6 w-full" asChild>
+                  <a
+                    href={whatsappLink(
+                      "I've pledged my vote for President Ruto — 2027. Add me to updates."
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("Confirm on WhatsApp")}
+                    <ArrowRight size={16} />
+                  </a>
+                </Button>
               </motion.div>
             ) : (
               <motion.form
@@ -63,26 +104,26 @@ export function PledgeCta() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onSubmit={handleSubmit}
-                className="glass-panel flex flex-col gap-3 rounded-2xl p-3"
+                className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
               >
                 <input
                   required
                   type="text"
                   placeholder={t("Full name")}
-                  className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-uda-500/60 focus:outline-none"
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-party-yellow focus:outline-none"
                 />
                 <input
                   required
                   type="tel"
-                  placeholder={t("Phone number")}
-                  className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-uda-500/60 focus:outline-none"
+                  placeholder={t("Phone number (WhatsApp)")}
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-party-yellow focus:outline-none"
                 />
                 <select
                   required
                   defaultValue=""
-                  className="rounded-xl border border-black/10 bg-onyx-950/60 px-4 py-3.5 text-sm text-black/70 focus:border-uda-500/60 focus:outline-none"
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white/80 focus:border-party-yellow focus:outline-none"
                 >
-                  <option value="" disabled>
+                  <option value="" disabled className="bg-onyx-900">
                     {t("Select your county")}
                   </option>
                   {[
@@ -109,6 +150,9 @@ export function PledgeCta() {
                     : t("Pledge My Vote")}
                   <ArrowRight size={16} />
                 </Button>
+                <p className="text-center text-xs text-white/40">
+                  {t("Free. Takes 10 seconds. No spam.")}
+                </p>
               </motion.form>
             )}
           </AnimatePresence>

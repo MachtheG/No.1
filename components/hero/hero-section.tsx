@@ -2,15 +2,15 @@
 
 import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
-import { Kicker } from "@/components/ui/badge";
 import { QuickStatsBar } from "@/components/hero/quick-stats-bar";
-import { unsplash } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
+import { CAMPAIGN } from "@/data/campaign";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -22,109 +22,81 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
     <section
       ref={sectionRef}
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-onyx-950 noise-overlay"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-black"
     >
-      {/* Cinematic background layer — swap this div's background for a <video> element in production */}
-      <motion.div
-        style={{ y: bgY }}
-        className="absolute inset-0 -z-10 scale-110"
-      >
+      {/* Background: campaign banner, with a light scrim so the copy stays legible */}
+      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 scale-110">
         <Image
-          src={unsplash("photo-1741991110666-88115e724741", 2400)}
-          alt="Nairobi skyline"
+          src="/images/banner3.jpg"
+          alt="President William Ruto campaign banner"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-40"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-10%,rgba(255,215,0,0.14),transparent_60%),radial-gradient(ellipse_100%_60%_at_85%_100%,rgba(0,100,0,0.18),transparent_55%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-onyx-950/40 via-onyx-950/70 to-onyx-950" />
+        {/* Darken the left (behind the headline) and the bottom (behind the stats),
+            leaving the right of the banner clearly visible. */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
       </motion.div>
 
-      <Container className="flex flex-1 flex-col justify-center pt-28 pb-16 sm:pt-32 sm:pb-24">
+      <Container className="relative z-10 flex flex-1 flex-col justify-center pt-32 pb-14 sm:pt-36">
         <motion.div
-          style={{ opacity: contentOpacity, y: contentY }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="flex flex-col items-start"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-          >
-            <Kicker>The Fifth President of the Republic of Kenya</Kicker>
-          </motion.div>
+          {/* Slogan badge */}
+          <span className="inline-flex items-center gap-2 rounded-full border border-party-yellow/40 bg-party-yellow/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-party-yellow">
+            {CAMPAIGN.slogan}
+            <span className="hidden text-party-yellow/60 sm:inline">
+              &middot; {t(CAMPAIGN.sloganEn)}
+            </span>
+          </span>
 
-          <h1 className="mt-8 max-w-5xl text-balance font-display text-[clamp(2.75rem,7vw,7.5rem)] font-medium leading-[0.95] tracking-tightest text-black">
-            {["THE ARCHITECT", "OF MODERN"].map((line, i) => (
-              <motion.span
-                key={line}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: EASE, delay: 0.2 + i * 0.12 }}
-                className="block overflow-hidden"
-              >
-                {line}
-              </motion.span>
-            ))}
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: EASE, delay: 0.44 }}
-              className="block bg-gradient-to-r from-uda-300 via-uda-500 to-uda-600 bg-clip-text italic text-transparent"
-            >
-              KENYA.
-            </motion.span>
+          {/* One sharp headline */}
+          <h1 className="mt-7 max-w-4xl font-display text-[clamp(3rem,9vw,7rem)] font-semibold uppercase leading-[0.9] tracking-tighter text-white">
+            {t("Promises made.")}
+            <br />
+            <span className="text-party-yellow">{t("Promises kept.")}</span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
-            className="mt-8 max-w-xl text-balance text-lg leading-relaxed text-black/60"
-          >
-            {t(
-              "A bottom-up economic revolution. Universal healthcare for every household. Dignified homes for the working class. His Excellency Dr. William Samoei Ruto is rewriting what a nation can deliver for its people — measured in results, not rhetoric."
-            )}
-          </motion.p>
+          {/* One supporting line */}
+          <p className="mt-6 max-w-xl text-lg font-medium text-white/70">
+            {t("Re-elect President William Ruto — 2027.")}
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.75 }}
-            className="mt-10 flex flex-wrap items-center gap-4"
-          >
+          {/* One primary action */}
+          <div className="mt-9 flex flex-wrap items-center gap-4">
             <Button size="lg" asChild>
-              <a href="#pledge">{t("Join the Movement")}</a>
+              <Link href="/why-ruto#pledge">
+                {t("Join the Movement")}
+                <ArrowRight size={18} />
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#ledger">{t("Explore the Ledger")}</a>
-            </Button>
-          </motion.div>
+            <Link
+              href="/achievements"
+              className="text-sm font-semibold uppercase tracking-widest text-white/70 underline-offset-4 transition-colors hover:text-party-yellow hover:underline"
+            >
+              {t("See the record")}
+            </Link>
+          </div>
         </motion.div>
       </Container>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.25 }}
         className="relative z-10"
       >
         <QuickStatsBar />
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute bottom-[7.5rem] left-1/2 hidden -translate-x-1/2 text-black/30 lg:block"
-      >
-        <ChevronDown size={20} />
       </motion.div>
     </section>
   );

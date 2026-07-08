@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Newspaper, PlayCircle } from "lucide-react";
+import { BadgeCheck, ExternalLink, Newspaper, PlayCircle } from "lucide-react";
 
 import { PillarBadge } from "@/components/ui/badge";
 import { YoutubeEmbed } from "@/components/media/youtube-embed";
@@ -66,7 +66,7 @@ export function MilestoneCard({
         <div className="mt-5 flex items-baseline gap-2">
           <span
             className={
-              "font-display text-2xl font-semibold " +
+              "font-display text-3xl font-bold " +
               (color === "uda" ? "text-party-gold" : "text-forest-700")
             }
           >
@@ -80,17 +80,19 @@ export function MilestoneCard({
           href={milestone.source.url}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 flex items-center gap-1.5 border-t border-black/10 pt-4 text-xs font-medium text-black/50 transition-colors hover:text-party-gold"
+          className="mt-4 flex items-center gap-1.5 border-t border-black/10 pt-4 text-xs font-semibold text-party-gold transition-colors hover:text-black"
         >
+          <BadgeCheck size={14} className="flex-shrink-0" />
+          <span className="flex-shrink-0">{t("Verified")}</span>
           {milestone.source.type === "video" ? (
-            <PlayCircle size={13} className="flex-shrink-0" />
+            <PlayCircle size={12} className="flex-shrink-0 text-black/40" />
           ) : (
-            <Newspaper size={13} className="flex-shrink-0" />
+            <Newspaper size={12} className="flex-shrink-0 text-black/40" />
           )}
-          <span className="line-clamp-1">
-            {t("Source:")} {milestone.source.title}
+          <span className="line-clamp-1 text-black/45">
+            {milestone.source.title}
           </span>
-          <ExternalLink size={11} className="flex-shrink-0" />
+          <ExternalLink size={11} className="flex-shrink-0 text-black/40" />
         </a>
       </div>
     </motion.article>

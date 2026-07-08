@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/container";
 import { Kicker } from "@/components/ui/badge";
 import { milestones, pillarMeta, type Pillar } from "@/data/milestones";
 import { MilestoneCard } from "@/components/ledger/milestone-card";
+import { FeatureMilestone } from "@/components/ledger/feature-milestone";
 import { cn } from "@/lib/utils";
 import { useT } from "@/lib/i18n";
 
@@ -33,6 +34,9 @@ export function LedgerSection({
         : milestones.filter((m) => m.pillar === filter),
     [filter]
   );
+
+  const featured = filtered.filter((m) => m.featured);
+  const standard = filtered.filter((m) => !m.featured);
 
   return (
     <section
@@ -77,13 +81,25 @@ export function LedgerSection({
           ))}
         </div>
 
-        <div className="mt-12">
+        {featured.length > 0 && (
+          <div className="mt-12 flex flex-col gap-6">
+            {featured.map((milestone, i) => (
+              <FeatureMilestone
+                key={milestone.id}
+                milestone={milestone}
+                flip={i % 2 === 1}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="mt-6">
           <AnimatePresence mode="popLayout">
             <motion.div
               layout
               className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {filtered.map((milestone, index) => (
+              {standard.map((milestone, index) => (
                 <MilestoneCard
                   key={milestone.id}
                   milestone={milestone}
