@@ -13,9 +13,9 @@ export function QuickStatsBar() {
         {quickStats.map((stat) => (
           <div
             key={stat.id}
-            className="rounded-xl border border-party-yellow/20 bg-white/[0.04] px-5 py-5 backdrop-blur-sm lg:px-6 lg:py-6"
+            className="min-w-0 rounded-xl border border-party-yellow/20 bg-white/[0.04] px-4 py-4 backdrop-blur-sm sm:px-5 sm:py-5 lg:px-6 lg:py-6"
           >
-            <div className="flex items-baseline gap-0.5 font-display text-4xl font-bold tabular-nums text-party-yellow lg:text-5xl">
+            <div className="flex items-baseline gap-0.5 font-display text-[clamp(1.5rem,7vw,2.25rem)] font-bold leading-none tracking-tight tabular-nums text-party-yellow lg:text-5xl">
               <AnimatedCounter
                 value={stat.value}
                 decimals={stat.value % 1 !== 0 ? 1 : 0}

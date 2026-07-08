@@ -222,7 +222,7 @@ export function DonateForm() {
       <Button
         type="submit"
         size="lg"
-        className="mt-6 w-full"
+        className="mt-6 w-full min-w-0 whitespace-normal px-4 text-center leading-tight sm:px-9"
         disabled={effectiveAmount <= 0}
       >
         {method === "mpesa"

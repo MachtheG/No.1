@@ -123,7 +123,7 @@ export function AskConsole() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={t("Ask about the plan…")}
-              className="flex-1 rounded-full border-2 border-black/10 bg-white px-5 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
+              className="min-w-0 flex-1 rounded-full border-2 border-black/10 bg-white px-5 py-3 text-sm text-black placeholder:text-black/30 focus:border-party-yellow focus:outline-none"
             />
             <motion.button
               type="submit"

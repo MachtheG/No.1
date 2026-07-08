@@ -33,7 +33,7 @@ export function PledgeCta() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-3xl border-2 border-party-yellow/30 bg-black p-8 lg:p-14">
+    <div className="relative overflow-hidden rounded-3xl border-2 border-party-yellow/30 bg-black p-6 sm:p-8 lg:p-14">
       <div className="absolute inset-x-0 top-0 h-1.5 bg-party-yellow" />
 
       <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
@@ -104,7 +104,7 @@ export function PledgeCta() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                className="flex min-w-0 flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
               >
                 <input
                   required

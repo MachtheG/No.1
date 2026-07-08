@@ -24,9 +24,9 @@ export function VoterCheck() {
   }
 
   return (
-    <div className="rounded-3xl border-2 border-party-yellow/30 bg-black p-8 lg:p-12">
+    <div className="rounded-3xl border-2 border-party-yellow/30 bg-black p-6 sm:p-8 lg:p-12">
       <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
-        <div>
+        <div className="min-w-0">
           <span className="inline-flex rounded-full border border-party-yellow/40 bg-party-yellow/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-party-yellow">
             {t("IEBC Voter Check")}
           </span>
@@ -76,19 +76,19 @@ export function VoterCheck() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onSubmit={handleSubmit}
-              className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+              className="flex min-w-0 flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
             >
               <input
                 required
                 inputMode="numeric"
                 placeholder={t("National ID number")}
-                className="rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-party-yellow focus:outline-none"
+                className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder:text-white/30 focus:border-party-yellow focus:outline-none"
               />
               <select
                 required
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
-                className="rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white/80 focus:border-party-yellow focus:outline-none"
+                className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white/80 focus:border-party-yellow focus:outline-none"
               >
                 <option value="" disabled className="bg-onyx-900">
                   {t("Select your county")}
@@ -102,7 +102,7 @@ export function VoterCheck() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full"
+                className="w-full min-w-0 whitespace-normal px-4 text-center leading-tight sm:px-9"
                 disabled={status === "checking"}
               >
                 {status === "checking" ? (

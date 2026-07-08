@@ -21,15 +21,18 @@ export function ManifestoContent() {
 
       <section className="border-b border-black/10 bg-onyx-900 py-6">
         <Container className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-black/70">
+          <p className="text-center text-sm text-black/70 sm:text-left">
             {t("Read the full plan, or take it with you.")}
           </p>
-          <Button asChild>
+          <Button
+            asChild
+            className="w-full min-w-0 whitespace-normal px-5 text-center leading-tight sm:w-auto sm:px-7"
+          >
             <a
               href="/downloads/ruto-2027-manifesto.pdf"
               download="Ruto-2027-Manifesto.pdf"
             >
-              <Download size={16} />
+              <Download size={16} className="flex-shrink-0" />
               {t("Download the Manifesto (PDF)")}
             </a>
           </Button>
