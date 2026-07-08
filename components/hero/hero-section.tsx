@@ -63,16 +63,15 @@ export function HeroSection() {
             </span>
           </span>
 
-          {/* One sharp headline */}
-          <h1 className="mt-7 max-w-4xl font-display text-[clamp(3rem,9vw,7rem)] font-semibold uppercase leading-[0.9] tracking-tighter text-white">
-            {t("Promises made.")}
-            <br />
-            <span className="text-party-yellow">{t("Promises kept.")}</span>
+          {/* Main title */}
+          <h1 className="mt-7 max-w-4xl font-display text-[clamp(2.75rem,8vw,6.25rem)] font-semibold uppercase leading-[0.92] tracking-tighter text-white">
+            {t("Architect of")}{" "}
+            <span className="text-party-yellow">{t("Modern Kenya")}</span>
           </h1>
 
-          {/* One supporting line */}
-          <p className="mt-6 max-w-xl text-lg font-medium text-white/70">
-            {t("Re-elect President William Ruto — 2027.")}
+          {/* Smaller supporting line */}
+          <p className="mt-5 max-w-xl text-lg font-medium tracking-wide text-white/75 sm:text-xl">
+            {t("Promises made, promises delivered.")}
           </p>
 
           {/* One primary action */}
