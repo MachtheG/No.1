@@ -71,7 +71,7 @@ export function SiteHeader() {
             </span>
             <span className="flex flex-col leading-tight">
               <span className="font-display text-sm font-semibold text-black sm:text-base">
-                H.E. Hon. Dr. William Ruto
+               William Samoei Ruto, PhD, C.G.H
               </span>
               <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-party-gold">
                 {CAMPAIGN.slogan}
