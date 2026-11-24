@@ -76,7 +76,7 @@ export const legacyQuotes: LegacyQuote[] = [
     id: "quote-1",
     quote:
       "Kenya is no longer waiting for the future to arrive — we are building it, one policy, one home, one hospital bed at a time.",
-    attribution: "H.E. Dr. William Samoei Ruto",
+    attribution: "William Samoei Ruto, PhD, C.G.H",
   },
   {
     id: "quote-2",
