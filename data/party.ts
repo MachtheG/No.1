@@ -7,7 +7,7 @@ export const partyProfile = {
     "Representing the worth, respect, and dignity of work — the tools of the hustler economy, elevated to a national symbol.",
   slogan: "Kazi ni Kazi",
   sloganMeaning: "\"A job is a job\" — every hustle matters, none is beneath dignity.",
-  leader: "H.E. Dr. William Samoei Ruto",
+  leader: "William Samoei Ruto, PhD, C.G.H",
   coalition: "Kenya Kwanza Alliance",
   colors: [
     { name: "Yellow", hex: "#FFD700" },
