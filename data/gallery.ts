@@ -82,12 +82,12 @@ export const legacyQuotes: LegacyQuote[] = [
     id: "quote-2",
     quote:
       "The bottom-up economic model is not a slogan. It is a mathematics of dignity for every hustler in this Republic.",
-    attribution: "H.E. Dr. William Samoei Ruto",
+    attribution: "William Samoei Ruto, PhD, C.G.H",
   },
   {
     id: "quote-3",
     quote:
       "A nation's greatness is measured not by the height of its towers, but by the depth of its care for the mama mboga and the boda boda rider.",
-    attribution: "H.E. Dr. William Samoei Ruto",
+    attribution: "William Samoei Ruto, PhD, C.G.H",
   },
 ];
