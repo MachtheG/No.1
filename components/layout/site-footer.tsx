@@ -34,7 +34,7 @@ export function SiteFooter() {
               </span>
               <span className="flex flex-col leading-tight">
                 <span className="font-display text-base font-semibold text-white">
-                  H.E. Hon. Dr. William Ruto
+                 William Samoei Ruto, PhD, C.G.H
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-party-yellow">
                   {CAMPAIGN.slogan} &middot; {CAMPAIGN.year}
