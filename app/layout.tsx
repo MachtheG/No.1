@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     template: "%s | William Ruto",
   },
   description:
-    "The official record of transformation under H.E. Dr. William Samoei Ruto — universal healthcare, affordable housing, economic empowerment, and Kenya's rise on the global stage.",
+    "The official record of transformation under William Samoei Ruto, PhD, C.G.H — universal healthcare, affordable housing, economic empowerment, and Kenya's rise on the global stage.",
   keywords: [
     "William Ruto",
     "President of Kenya",
